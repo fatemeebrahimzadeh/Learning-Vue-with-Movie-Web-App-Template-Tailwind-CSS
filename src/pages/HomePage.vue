@@ -1,11 +1,11 @@
 <script setup>
-import HeaderContent from '@/components/HeaderContent.vue'
-import MainContent from '@/components/MainContent.vue'
+import HomeHeader from '@/components/HomeHeader.vue'
+import HomeMain from '@/components/HomeMain.vue'
 import FooterContent from '@/components/FooterContent.vue'
 </script>
 
 <template>
-  <header-content />
-  <main-content />
+  <home-header />
+  <home-main />
   <footer-content />
 </template>

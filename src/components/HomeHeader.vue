@@ -10,7 +10,11 @@ import HeaderSlider from '@/components/HeaderSlider.vue'
     <div class="w-full h-full bg-lighten dark:bg-transparent">
       <div class="container h-full flex flex-col justify-around">
         <h1 class="hidden">MovieMaven</h1>
-        <header-nav />
+        <header-nav>
+          <li class="button">
+            <button id="signup-btn">SIGN UP</button>
+          </li>
+        </header-nav>
         <header-search-bar />
         <social-media-links-list />
         <header-slider />

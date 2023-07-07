@@ -134,9 +134,7 @@ import Iran from '@/assets/svgs/flags/Iran.vue'
               ></i>
             </button>
           </li>
-          <li class="button">
-            <button id="signup-btn">SIGN UP</button>
-          </li>
+          <slot></slot>
         </ul>
       </div>
     </div>

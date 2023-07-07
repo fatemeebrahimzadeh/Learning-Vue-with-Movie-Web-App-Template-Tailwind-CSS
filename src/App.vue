@@ -1,7 +1,9 @@
 <script setup>
-import HomePage from '@/pages/HomePage.vue'
+// import HomePage from '@/pages/HomePage.vue'
+import FavoritePage from '@/pages/FavoritePage.vue'
 </script>
 
 <template>
-  <home-page />
+  <!-- <home-page /> -->
+  <favorite-page />
 </template>
