@@ -1,13 +1,15 @@
 <script setup>
 import slider1 from '@/assets/images/slider1.jpg'
+
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
   <div class="movie-item relative group">
     <div class="mv-img">
-      <a href="./single-movie.html">
+      <router-link to="/single-movie">
         <img class="slider-image" :src="slider1" />
-      </a>
+      </router-link>
     </div>
     <div class="slider-item__title-in">
       <div class="cate">

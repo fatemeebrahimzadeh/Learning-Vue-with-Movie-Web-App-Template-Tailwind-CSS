@@ -1,5 +1,6 @@
 <script setup>
 import Logo from '@/assets/images/logo.png'
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -63,10 +64,10 @@ import Logo from '@/assets/images/logo.png'
           <h4 class="footer-section__header">Account</h4>
           <ul class="footer-section__ul">
             <li>
-              <a href="./profile.html" class="item-hover">My Account</a>
+              <router-link to="/profile" class="item-hover">My Account</router-link>
             </li>
             <li>
-              <a href="./watch-list.html" class="item-hover">Watchlist</a>
+              <router-link to="/favorite-movies" class="item-hover">Watchlist</router-link>
             </li>
             <li>
               <a href="./favorite-movies.html" class="item-hover">Collections</a>

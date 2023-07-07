@@ -3,6 +3,7 @@ import logo from '@/assets/images/logo.png'
 import MobileNavbarIcon from '@/assets/svgs/MobileNavbarIcon.vue'
 import UnitedStates from '@/assets/svgs/flags/UnitedStates.vue'
 import Iran from '@/assets/svgs/flags/Iran.vue'
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -21,11 +22,8 @@ import Iran from '@/assets/svgs/flags/Iran.vue'
       >
         <ul class="flex flex-col items-center p-4 lg:p-0 lg:flex-row lg:space-x-8 lg:mt-0">
           <li>
-            <a
-              href="./index.html"
-              class="block py-2 pl-3 pr-4 item-hover lg:p-0"
-              aria-current="page"
-              >HOME</a
+            <router-link to="/" class="block py-2 pl-3 pr-4 item-hover lg:p-0" aria-current="page"
+              >HOME</router-link
             >
           </li>
           <li class="group relative">

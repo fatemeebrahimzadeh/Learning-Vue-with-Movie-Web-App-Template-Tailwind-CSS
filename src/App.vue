@@ -1,19 +1,11 @@
 <script setup>
-import HomePage from '@/pages/HomePage.vue'
-// import FavoritePage from '@/pages/FavoritePage.vue'
-// import SingleMoviePage from '@/pages/SingleMoviePage.vue'
-// import ProfilePage from '@/pages/ProfilePage.vue'
-
 import FooterContent from '@/components/FooterContent.vue'
 import SignupPopup from '@/components/SignupPopup.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <home-page />
-  <!-- <favorite-page /> -->
-  <!-- <single-movie-page /> -->
-  <!-- <profile-page /> -->
-
+  <RouterView />
   <footer-content />
   <signup-popup />
 </template>

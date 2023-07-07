@@ -2,7 +2,7 @@
   <!-- make display flex and remove hidden -->
   <section
     id="signup-popup"
-    class="flex z-50 overlay fixed w-screen h-screen top-0 left-0 items-center justify-center bg-dark-backdrop font-dosis"
+    class="hidden z-50 overlay fixed w-screen h-screen top-0 left-0 items-center justify-center bg-dark-backdrop font-dosis"
   >
     <div class="signup-content bg-white w-96 flex flex-col items-center p-5">
       <h2 class="text-black text-2xl font-dosis">SIGN UP</h2>
