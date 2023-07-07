@@ -1,11 +1,13 @@
 <script setup>
 import MainContentCategoriesSection from '@/components/MainContentCategoriesSection.vue'
-import YoutubeSection from '@/components/YoutubeSection.vue'
+import TrailerSection from '@/components/TrailerSection.vue'
+import NewsSection from '@/components/NewsSection.vue'
 </script>
 
 <template>
   <main class="py-10">
     <main-content-categories-section />
-    <youtube-section />
+    <trailer-section />
+    <news-section />
   </main>
 </template>
