@@ -1,13 +1,19 @@
 <script setup>
-// import HomePage from '@/pages/HomePage.vue'
+import HomePage from '@/pages/HomePage.vue'
 // import FavoritePage from '@/pages/FavoritePage.vue'
 // import SingleMoviePage from '@/pages/SingleMoviePage.vue'
-import ProfilePage from '@/pages/ProfilePage.vue'
+// import ProfilePage from '@/pages/ProfilePage.vue'
+
+import FooterContent from '@/components/FooterContent.vue'
+import SignupPopup from '@/components/SignupPopup.vue'
 </script>
 
 <template>
-  <!-- <home-page /> -->
+  <home-page />
   <!-- <favorite-page /> -->
   <!-- <single-movie-page /> -->
-  <profile-page />
+  <!-- <profile-page /> -->
+
+  <footer-content />
+  <signup-popup />
 </template>
