@@ -2,6 +2,7 @@
 import HeaderNav from '@/components/HeaderNav.vue'
 import HeaderSearchBar from '@/components/HeaderSearchBar.vue'
 import SocialMediaLinksList from '@/components/SocialMediaLinksList.vue'
+import HeaderSlider from '@/components/HeaderSlider.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import SocialMediaLinksList from '@/components/SocialMediaLinksList.vue'
         <header-nav />
         <header-search-bar />
         <social-media-links-list />
+        <header-slider />
       </div>
     </div>
   </header>

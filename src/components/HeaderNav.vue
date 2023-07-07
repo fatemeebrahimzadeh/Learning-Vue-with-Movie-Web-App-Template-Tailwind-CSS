@@ -13,7 +13,7 @@ import Iran from '@/assets/svgs/flags/Iran.vue'
       </a>
       <button id="navbar-toggler" class="inline-flex items-center p-2 ml-3 text-sm lg:hidden">
         <span class="sr-only">Open main menu</span>
-        <mobile-navbar-icon class="w-6 h-6" />
+        <mobile-navbar-icon className="w-6 h-6" />
       </button>
       <div
         class="hidden rounded-lg w-full z-20 bg-light-secondary dark:bg-dark-secondary absolute top-[112px] sm:top-[122px] left-0 lg:static lg:block lg:w-auto lg:bg-transparent lg:dark:bg-transparent"
@@ -106,7 +106,7 @@ import Iran from '@/assets/svgs/flags/Iran.vue'
                 <li>
                   <button type="button" class="inline-flex w-full px-4 py-2 text-sm item-hover">
                     <div class="inline-flex items-center">
-                      <united-states class="h-3.5 w-3.5 rounded-full mr-2" />
+                      <united-states className="h-3.5 w-3.5 rounded-full mr-2" />
                       United States
                     </div>
                   </button>
@@ -114,7 +114,7 @@ import Iran from '@/assets/svgs/flags/Iran.vue'
                 <li>
                   <button type="button" class="inline-flex w-full px-4 py-2 text-sm item-hover">
                     <div class="inline-flex items-center">
-                      <iran class="h-3.5 w-3.5 rounded-full mr-2" />
+                      <iran className="h-3.5 w-3.5 rounded-full mr-2" />
                       Persian
                     </div>
                   </button>
