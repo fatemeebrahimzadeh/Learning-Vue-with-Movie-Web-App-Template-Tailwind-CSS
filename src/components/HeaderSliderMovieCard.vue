@@ -1,9 +1,19 @@
 <script setup>
-import { RouterLink } from 'vue-router'
 import { genres } from '@/constants/genres.js'
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 
-const props = defineProps(['src', 'title', 'rate', 'genre_ids'])
+const router = useRouter()
+
+const props = defineProps([
+  'src',
+  'title',
+  'rate',
+  'genre_ids',
+  'release_date',
+  'vote_count',
+  'overview'
+])
 
 const computedGenres = computed(() => {
   return props.genre_ids.map((id) => {
@@ -11,14 +21,21 @@ const computedGenres = computed(() => {
     return genre && genre
   })
 })
+
+function redirectToSingleMoviePage() {
+  router.push({
+    path: '/single-movie',
+    query: { ...props, computedGenres: computedGenres.value }
+  })
+}
 </script>
 
 <template>
   <div class="movie-item relative group">
     <div class="mv-img">
-      <router-link to="/single-movie">
+      <a @click="redirectToSingleMoviePage">
         <img class="slider-image" :src="src" />
-      </router-link>
+      </a>
     </div>
     <div class="slider-item__title-in">
       <div class="cate flex flex-wrap gap-1">
@@ -28,7 +45,7 @@ const computedGenres = computed(() => {
           :style="{ backgroundColor: genre.color }"
           class="slider-item__title-in__status"
         >
-          <a href="#">{{ genre.name }}</a>
+          <span>{{ genre.name }}</span>
         </span>
       </div>
       <h6 class="slider-item__title-in__heading">

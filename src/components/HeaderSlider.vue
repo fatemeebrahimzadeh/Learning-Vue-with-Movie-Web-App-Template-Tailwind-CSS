@@ -32,6 +32,9 @@ onMounted(async () => {
         :title="movie.title"
         :rate="movie.vote_average"
         :genre_ids="movie.genre_ids"
+        :release_date="movie.release_date"
+        :vote_count="movie.vote_count"
+        :overview="movie.overview"
       />
     </div>
   </div>

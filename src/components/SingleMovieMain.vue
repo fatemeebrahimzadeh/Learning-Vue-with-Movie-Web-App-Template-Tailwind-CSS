@@ -6,16 +6,35 @@ import CastItem from '@/components/CastItem.vue'
 
 import image4 from '@/assets/images/image4.jpg'
 import ads1 from '@/assets/images/ads1.png'
+import { computed } from 'vue'
+
+const props = defineProps([
+  'src',
+  'title',
+  'rate',
+  'computedGenres',
+  'release_date',
+  'vote_count',
+  'overview'
+])
+
+const year = computed(() => {
+  return props.release_date.split('-')[0]
+})
 </script>
 
 <template>
   <main class="py-10">
     <div class="container flex flex-col items-center lg:items-start lg:flex-row -mt-80 gap-10">
-      <single-movie-side-bar />
+      <single-movie-side-bar :src="src" />
       <div class="basis-2/3 flex flex-col gap-8">
         <h1 class="font-extralight text-2xl">
-          <span class="dark:text-white font-bold text-4xl"> Skyfall: Quantum of Spectre</span>
-          2015
+          <span
+            class="dark:text-white font-bold text-4xl overflow-hidden text-ellipsis line-clamp-1"
+          >
+            {{ title }}</span
+          >
+          {{ year }}
         </h1>
         <div class="flex flex-col sm:flex-row gap-5 text-red">
           <a href="#" class="flex items-center gap-1">
@@ -34,9 +53,9 @@ import ads1 from '@/assets/images/ads1.png'
             <span class="star flex items-center gap-2">
               <i class="fa-fw fa-xl fa-star text-yellow fa"></i>
               <div>
-                <span class="text-white text-lg">8.1</span>
+                <span class="text-white text-lg">{{ rate }}</span>
                 <span>/10</span>
-                <p class="text-black dark:text-blue">56 Reviews</p>
+                <p class="text-black dark:text-blue">{{ vote_count }} Reviews</p>
               </div>
             </span>
           </div>
@@ -71,10 +90,7 @@ import ads1 from '@/assets/images/ads1.png'
         <div class="flex flex-col gap-10 md:flex-row md:gap-0">
           <div class="basis-3/4 md:pr-10 flex flex-col gap-10">
             <p id="overview" class="text-black dark:text-text font-light scroll-m-10">
-              Tony Stark creates the Ultron Program to protect the world, but when the peacekeeping
-              program becomes hostile, The Avengers go into action to try and defeat a virtually
-              impossible enemy together. Earth's mightiest heroes must come together once again to
-              protect the world from global extinction.
+              {{ overview }}
             </p>
             <div id="media" class="scroll-m-10">
               <header
@@ -205,11 +221,16 @@ import ads1 from '@/assets/images/ads1.png'
             <div class="text-black dark:text-text">
               Genres:
               <div>
-                <span class="text-blue hover hover:cursor-pointer font-light">Action</span>
-                <span>,</span>
-                <span class="text-blue hover hover:cursor-pointer font-light">Sci-Fi</span>
-                <span>,</span>
-                <span class="text-blue hover hover:cursor-pointer font-light">Adventure</span>
+                <span
+                  class=""
+                  v-for="genre in computedGenres"
+                  :key="genre.id"
+                >
+                  <span class="text-blue hover hover:cursor-pointer font-light">{{
+                    genre.name
+                  }}</span>
+                  <span>,</span>
+                </span>
               </div>
             </div>
             <div class="text-black dark:text-text">
