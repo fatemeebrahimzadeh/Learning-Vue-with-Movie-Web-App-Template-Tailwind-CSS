@@ -1,15 +1,15 @@
 <script setup>
-import ava1 from '@/assets/images/ava1.jpg'
+defineProps(['name', 'job', 'src'])
 </script>
 
 <template>
   <article class="celebrity-item">
-    <img class="rounded-lg" :src="ava1" alt="celebrity1" />
+    <img class="rounded-lg" :src="src" alt="celebrity1" />
     <div class="celebrity-detail">
       <h6 class="celebrity-name">
-        <a class="item-hover" href="#">Samuel N. Jack</a>
+        <a class="item-hover" href="#">{{ name }}</a>
       </h6>
-      <span class="celebrity-job">ACTOR</span>
+      <span class="celebrity-job">{{ job }}</span>
     </div>
   </article>
 </template>

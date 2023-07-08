@@ -12,7 +12,7 @@ updateLoadingState(true)
 
 onMounted(async () => {
   try {
-    const response = await Axios.get('/now_playing?language=en-US&page=1')
+    const response = await Axios.get('/movie/now_playing?language=en-US&page=1')
     movies.value = response.data.results
   } catch (error) {
     console.error(error)

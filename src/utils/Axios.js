@@ -2,7 +2,7 @@ import axios from 'axios'
 import { API_BASE_URL, API_VERSION } from '@/constants/api-constants.js'
 
 const basicConfigs = {
-  baseURL: `${API_BASE_URL}/${API_VERSION}/movie`
+  baseURL: `${API_BASE_URL}/${API_VERSION}`
 }
 
 export class AxiosClass {
