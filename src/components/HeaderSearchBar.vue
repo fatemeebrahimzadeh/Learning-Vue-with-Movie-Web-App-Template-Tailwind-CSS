@@ -1,5 +1,5 @@
 <script setup>
-import SearchIcon from '@/assets/svgs/SearchIcon.vue'
+// import SearchIcon from '@/assets/svgs/SearchIcon.vue'
 </script>
 
 <template>
@@ -43,7 +43,7 @@ import SearchIcon from '@/assets/svgs/SearchIcon.vue'
           required
         />
         <button type="submit" class="absolute top-0 right-0 p-2.5 text-sm font-medium text-text">
-          <search-icon className="w-5 h-5" />
+          <!-- <search-icon className="w-5 h-5" /> -->
         </button>
       </div>
     </div>
