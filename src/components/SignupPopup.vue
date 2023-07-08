@@ -1,3 +1,7 @@
+<script setup>
+import github from '@/assets/svgs/github.svg'
+</script>
+
 <template>
   <!-- make display flex and remove hidden -->
   <section
@@ -21,7 +25,7 @@
           type="button"
           class="py-2 px-4 flex justify-center items-center bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-sm"
         >
-          <img class="mr-2" src="./assets/svgs/github.svg" alt="github" />
+          <img class="mr-2" :src="github" alt="github" />
           Sign in with GitHub
         </button>
       </form>
