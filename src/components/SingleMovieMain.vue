@@ -15,7 +15,8 @@ const props = defineProps([
   'computedGenres',
   'release_date',
   'vote_count',
-  'overview'
+  'overview',
+  'relatedMovies'
 ])
 
 const year = computed(() => {
@@ -183,7 +184,11 @@ const year = computed(() => {
                 ></a>
               </header>
               <div class="movie-list flex overflow-hidden gap-4 max-[450px]:justify-center">
-                <related-movie-item v-for="index in 4" :key="index" />
+                <related-movie-item
+                  v-for="relatedMovie in relatedMovies"
+                  :key="relatedMovie.id"
+                  :src="relatedMovie.src"
+                />
               </div>
             </div>
           </div>
@@ -221,11 +226,7 @@ const year = computed(() => {
             <div class="text-black dark:text-text">
               Genres:
               <div>
-                <span
-                  class=""
-                  v-for="genre in computedGenres"
-                  :key="genre.id"
-                >
+                <span class="" v-for="genre in computedGenres" :key="genre.id">
                   <span class="text-blue hover hover:cursor-pointer font-light">{{
                     genre.name
                   }}</span>

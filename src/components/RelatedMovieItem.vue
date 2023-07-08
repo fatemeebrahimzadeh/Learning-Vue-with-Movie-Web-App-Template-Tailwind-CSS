@@ -1,11 +1,11 @@
 <script setup>
-import MvItem1 from '@/assets/images/mv-item1.jpg'
+defineProps(['src'])
 </script>
 
 <template>
   <div class="movie-item relative group">
     <a href="./single-movie.html">
-      <img class="flex-shrink-0 object-cover" :src="MvItem1" />
+      <img class="flex-shrink-0 object-cover" :src="src" />
     </a>
   </div>
 </template>
