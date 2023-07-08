@@ -35,6 +35,7 @@ onMounted(async () => {
         :release_date="movie.release_date"
         :vote_count="movie.vote_count"
         :overview="movie.overview"
+        :backdrop_path="`${API_IMAGE_BASE_URL}w1280${movie.backdrop_path}`"
       />
     </div>
   </div>

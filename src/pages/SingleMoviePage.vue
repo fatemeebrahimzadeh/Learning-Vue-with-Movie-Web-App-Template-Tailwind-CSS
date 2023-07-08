@@ -31,7 +31,7 @@ const relatedMovies = [
 </script>
 
 <template>
-  <single-movie-header />
+  <single-movie-header :backdrop_src="route.query.backdrop_path" />
   <single-movie-main
     :src="route.query.src"
     :title="route.query.title"

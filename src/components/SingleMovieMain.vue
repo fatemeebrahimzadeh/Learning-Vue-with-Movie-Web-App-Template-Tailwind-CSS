@@ -25,7 +25,7 @@ const year = computed(() => {
 </script>
 
 <template>
-  <main class="py-10">
+  <main class="py-10 z-20 relative">
     <div class="container flex flex-col items-center lg:items-start lg:flex-row -mt-80 gap-10">
       <single-movie-side-bar :src="src" />
       <div class="basis-2/3 flex flex-col gap-8">

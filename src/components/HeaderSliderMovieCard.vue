@@ -12,7 +12,8 @@ const props = defineProps([
   'genre_ids',
   'release_date',
   'vote_count',
-  'overview'
+  'overview',
+  'backdrop_path'
 ])
 
 const computedGenres = computed(() => {

@@ -1,11 +1,15 @@
 <script setup>
 import HeaderNav from '@/components/HeaderNav.vue'
 import HeaderSearchBar from '@/components/HeaderSearchBar.vue'
+defineProps(['backdrop_src'])
 </script>
 
 <template>
-  <header class="w-full bg-singleMovieHeader h-[500px] bg-cover">
-    <div class="w-full h-full bg-lighten dark:bg-transparent">
+  <header
+    :style="{ backgroundImage: 'url(' + backdrop_src + ')' }"
+    class="w-full h-[500px] bg-cover backdrop-blur-sm"
+  >
+    <div class="w-full h-full bg-lighten dark:bg-transparent backdrop-blur-sm">
       <div class="container">
         <header-nav>
           <li class="button">
