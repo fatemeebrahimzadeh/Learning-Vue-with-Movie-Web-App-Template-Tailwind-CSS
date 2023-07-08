@@ -94,7 +94,7 @@
     }
 
     .slider-item__title-in__heading {
-        @apply text-white text-xl group-hover:text-red dark:group-hover:text-yellow;
+        @apply text-white text-xl group-hover:text-red dark:group-hover:text-yellow overflow-hidden text-ellipsis line-clamp-1;
     }
 
     .movie-item__hover {
