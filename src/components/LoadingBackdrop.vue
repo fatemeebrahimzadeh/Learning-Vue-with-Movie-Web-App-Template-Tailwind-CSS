@@ -3,7 +3,7 @@ defineEmits(['backdropHandler'])
 </script>
 
 <template>
-  <div class="backdrop" @click="$emit(backdropHandler)"><slot></slot></div>
+  <div class="backdrop" @click="$emit(backdropHandler)"><slot /></div>
 </template>
 
 <style scoped>

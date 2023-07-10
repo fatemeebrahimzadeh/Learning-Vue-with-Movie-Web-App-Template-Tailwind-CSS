@@ -132,7 +132,7 @@ import { RouterLink } from 'vue-router'
               ></i>
             </button>
           </li>
-          <slot></slot>
+          <slot/>
         </ul>
       </div>
     </div>
