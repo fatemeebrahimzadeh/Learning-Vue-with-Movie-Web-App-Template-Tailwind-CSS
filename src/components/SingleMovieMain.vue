@@ -20,7 +20,7 @@ const props = defineProps([
 ])
 
 const year = computed(() => {
-  return props.release_date.split('-')[0]
+  return props.release_date && new Date(props.release_date).getFullYear()
 })
 </script>
 
