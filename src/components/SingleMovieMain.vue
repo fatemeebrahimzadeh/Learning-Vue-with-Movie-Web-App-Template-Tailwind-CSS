@@ -63,11 +63,12 @@ const year = computed(() => {
           <div class="sm:basis-3/4 flex items-center text-lg gap-2 p-2">
             Rate This Movie:
             <span>
-              <i class="fa-fw fa-xl fa-star text-yellow fa"></i>
-              <i class="fa-fw fa-xl fa-star text-yellow fa"></i>
-              <i class="fa-fw fa-xl fa-star text-yellow fa"></i>
-              <i class="fa-fw fa-xl fa-star text-yellow fa"></i>
-              <i class="fa-fw fa-xl fa-star fa"></i>
+              <i
+                v-for="index in 5"
+                :key="index"
+                class="fa-fw fa-xl fa-star fa"
+                :class="{ 'text-yellow': index <= rate / 2 }"
+              ></i>
             </span>
           </div>
         </div>
