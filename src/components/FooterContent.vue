@@ -1,6 +1,28 @@
 <script setup>
 import Logo from '@/assets/images/logo.png'
 import { RouterLink } from 'vue-router'
+
+const resourceOptions = [
+  { id: 1, title: 'About' },
+  { id: 2, title: 'Blockbuster' },
+  { id: 3, title: 'Contact Us' },
+  { id: 4, title: 'Forums' },
+  { id: 5, title: 'Blog' },
+  { id: 6, title: 'Help Center' }
+]
+
+const legalOptions = [
+  { id: 1, title: 'Term Of Use' },
+  { id: 2, title: 'Privacy Policy' },
+  { id: 3, title: 'Security' }
+]
+
+const accountOptions = [
+  { id: 1, title: 'My Account', path: '/profile' },
+  { id: 2, title: 'Watchlist', path: '/favorite-movies' },
+  { id: 3, title: 'Collections', path: '' },
+  { id: 4, title: 'User Guide', path: '' }
+]
 </script>
 
 <template>
@@ -26,54 +48,24 @@ import { RouterLink } from 'vue-router'
         <section class="footer-section">
           <h4 class="footer-section__header">Resources</h4>
           <ul class="footer-section__ul">
-            <li>
-              <a class="item-hover">About</a>
-            </li>
-            <li>
-              <a class="item-hover">Blockbuster</a>
-            </li>
-            <li>
-              <a class="item-hover">Contact Us</a>
-            </li>
-            <li>
-              <a class="item-hover">Forums</a>
-            </li>
-            <li>
-              <a class="item-hover">Blog</a>
-            </li>
-            <li>
-              <a class="item-hover">Help Center</a>
+            <li v-for="option in resourceOptions" :key="option.id">
+              <a class="item-hover">{{ option.title }}</a>
             </li>
           </ul>
         </section>
         <section class="footer-section">
           <h4 class="footer-section__header">Legal</h4>
           <ul class="footer-section__ul">
-            <li>
-              <a class="item-hover">Term Of Use</a>
-            </li>
-            <li>
-              <a class="item-hover">Privacy Policy</a>
-            </li>
-            <li>
-              <a class="item-hover">Security</a>
+            <li v-for="option in legalOptions" :key="option.id">
+              <a class="item-hover">{{ option.title }}</a>
             </li>
           </ul>
         </section>
         <section class="footer-section">
           <h4 class="footer-section__header">Account</h4>
           <ul class="footer-section__ul">
-            <li>
-              <router-link to="/profile" class="item-hover">My Account</router-link>
-            </li>
-            <li>
-              <router-link to="/favorite-movies" class="item-hover">Watchlist</router-link>
-            </li>
-            <li>
-              <a class="item-hover">Collections</a>
-            </li>
-            <li>
-              <a class="item-hover">User Guide</a>
+            <li v-for="option in accountOptions" :key="option.id">
+              <router-link :to="option.path" class="item-hover">{{ option.title }}</router-link>
             </li>
           </ul>
         </section>
