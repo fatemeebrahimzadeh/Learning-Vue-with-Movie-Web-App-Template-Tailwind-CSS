@@ -17,21 +17,18 @@
         class="flex-shrink-0 inline-flex font-medium text-center w-full bg-white border-[1px] border-black dark:border-0 dark:bg-dark-triority dark:placeholder-text dark:text-text rounded-sm px-5 py-3 placeholder:font-light mb-5 text-xs"
       >
         <option class="form-option" selected value="">Enter to filter genres</option>
-        <option class="form-option" value="Action1">Action 1</option>
-        <option class="form-option" value="Action2">Action 2</option>
-        <option class="form-option" value="Action3">Action 3</option>
-        <option class="form-option" value="Action4">Action 4</option>
-        <option class="form-option" value="Action5">Action 5</option>
+        <option v-for="index in 5" :key="index" class="form-option" :value="`Action${index}`">
+          {{ `Action ${index}` }}
+        </option>
       </select>
       <label class="text-xs" for="range">Rating Range</label>
       <select
         name="skills"
         class="flex-shrink-0 inline-flex font-medium text-center w-full bg-white border-[1px] border-black dark:border-0 dark:bg-dark-triority dark:placeholder-text dark:text-text rounded-sm px-5 py-3 placeholder:font-light mb-5 text-xs"
       >
-        <option class="form-option" value="range">-- Select the rating range below --</option>
-        <option class="form-option" value="saab">-- Select the rating range below --</option>
-        <option class="form-option" value="saab">-- Select the rating range below --</option>
-        <option class="form-option" value="saab">-- Select the rating range below --</option>
+        <option v-for="index in 4" :key="index" class="form-option" :value="`${index}`">
+          -- Select the rating range below --
+        </option>
       </select>
       <label class="text-xs" for="year">Release Year:</label>
       <div class="flex flex-col sm:flex-row justify-between gap-5">
@@ -46,22 +43,12 @@
             From
           </option>
           <option
+            v-for="index in 3"
+            :key="index"
             class="bg-light-secondary dark:bg-dark-secondary text-black dark:text-text"
-            value="number"
+            :value="`number${index}`"
           >
-            10
-          </option>
-          <option
-            class="bg-light-secondary dark:bg-dark-secondary text-black dark:text-text"
-            value="number"
-          >
-            20
-          </option>
-          <option
-            class="bg-light-secondary dark:bg-dark-secondary text-black dark:text-text"
-            value="number"
-          >
-            30
+            {{ index * 10 }}
           </option>
         </select>
         <select
@@ -75,22 +62,12 @@
             To
           </option>
           <option
+            v-for="index in 3"
+            :key="index"
             class="bg-light-secondary dark:bg-dark-secondary text-black dark:text-text"
-            value="number"
+            :value="`number${index}`"
           >
-            20
-          </option>
-          <option
-            class="bg-light-secondary dark:bg-dark-secondary text-black dark:text-text"
-            value="number"
-          >
-            30
-          </option>
-          <option
-            class="bg-light-secondary dark:bg-dark-secondary text-black dark:text-text"
-            value="number"
-          >
-            40
+            {{ index * 10 }}
           </option>
         </select>
       </div>
