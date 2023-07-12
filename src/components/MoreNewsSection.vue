@@ -6,7 +6,7 @@ import NewsItem from '@/components/NewsItem.vue'
   <section>
     <header class="flex justify-between mb-5">
       <h3 class="dark:text-white text-base">More news on Blockbuster</h3>
-      <a class="text-xs item-hover" href="#"
+      <a class="text-xs item-hover"
         >SEE ALL MOVIES NEWS <i class="fa fa-chevron-right fa-sm fa-fw"></i
       ></a>
     </header>

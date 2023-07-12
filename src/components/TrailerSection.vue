@@ -9,9 +9,7 @@ import TrailerSidebar from '@/components/TrailerSidebar.vue'
         class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 py-10 sm:items-center"
       >
         <h2 class="text-black dark:text-white text-3xl">ON TV</h2>
-        <a class="text-sm item-hover" href="#"
-          >VIEW ALL <i class="fa fa-chevron-right fa-sm fa-fw"></i
-        ></a>
+        <a class="text-sm item-hover">VIEW ALL <i class="fa fa-chevron-right fa-sm fa-fw"></i></a>
       </header>
       <div class="flex h-full flex-col lg:flex-row">
         <div class="movie w-full h-full">

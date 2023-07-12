@@ -10,7 +10,7 @@ import author from '@/assets/images/author.png'
     <div class="w-full h-full bg-lighten dark:bg-transparent">
       <div class="container flex flex-col h-full">
         <header-nav>
-          <a href="./profile.html">
+          <a>
             <img class="m-2" :src="author" alt="user" />
           </a>
         </header-nav>
@@ -20,7 +20,7 @@ import author from '@/assets/images/author.png'
               FAVORITE MOVIES
             </h1>
             <ul class="flex breadcrumb">
-              <li class="text-black dark:text-blue"><a href="#">HOME</a></li>
+              <li class="text-black dark:text-blue"><a>HOME</a></li>
               <li class="before:content-chevron-right">FAVORITE MOVIES</li>
             </ul>
           </div>

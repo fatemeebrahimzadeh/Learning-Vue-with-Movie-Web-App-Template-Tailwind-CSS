@@ -6,7 +6,7 @@ import mv1 from '@/assets/images/mv1.jpg'
   <article
     class="h-fit flex-grow bg-light-backgroundColor dark:bg-dark-secondary shadow-md rounded m-3"
   >
-    <a href="./single-movie.html" class="h-3/4 w-full">
+    <a class="h-3/4 w-full">
       <img class="w-full h-full object-cover rounded-t" :src="mv1" alt="mv1" />
     </a>
     <div class="flex-col px-4">

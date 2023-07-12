@@ -9,7 +9,7 @@ import { RouterLink } from 'vue-router'
 <template>
   <nav>
     <div class="relative max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-8">
-      <a href="#">
+      <a>
         <img class="!max-w-[100px] sm:!max-w-[119px]" :src="logo" alt="logo" />
       </a>
       <button id="navbar-toggler" class="inline-flex items-center p-2 ml-3 text-sm lg:hidden">
@@ -42,13 +42,13 @@ import { RouterLink } from 'vue-router'
             >
               <ul class="py-2 text-sm text-gray-400" aria-labelledby="dropdownLargeButton">
                 <li>
-                  <a href="#" class="block px-4 py-2 item-hover">Action</a>
+                  <a class="block px-4 py-2 item-hover">Action</a>
                 </li>
                 <li>
-                  <a href="#" class="block px-4 py-2 item-hover">Comedy</a>
+                  <a class="block px-4 py-2 item-hover">Comedy</a>
                 </li>
                 <li>
-                  <a href="#" class="block px-4 py-2 item-hover">Drama</a>
+                  <a class="block px-4 py-2 item-hover">Drama</a>
                 </li>
               </ul>
             </div>
@@ -69,22 +69,22 @@ import { RouterLink } from 'vue-router'
             >
               <ul class="py-2 text-sm text-gray-400" aria-labelledby="dropdownLargeButton">
                 <li>
-                  <a href="#" class="block px-4 py-2 item-hover">Actors</a>
+                  <a class="block px-4 py-2 item-hover">Actors</a>
                 </li>
                 <li>
-                  <a href="#" class="block px-4 py-2 item-hover">Actresses</a>
+                  <a class="block px-4 py-2 item-hover">Actresses</a>
                 </li>
                 <li>
-                  <a href="#" class="block px-4 py-2 item-hover">Directors</a>
+                  <a class="block px-4 py-2 item-hover">Directors</a>
                 </li>
               </ul>
             </div>
           </li>
           <li>
-            <a href="#" class="block py-2 pl-3 pr-4 item-hover lg:p-0">NEWS</a>
+            <a class="block py-2 pl-3 pr-4 item-hover lg:p-0">NEWS</a>
           </li>
           <li>
-            <a href="#" class="block py-2 pl-3 pr-4 item-hover lg:p-0">COMMUNITY</a>
+            <a class="block py-2 pl-3 pr-4 item-hover lg:p-0">COMMUNITY</a>
           </li>
           <li class="group relative">
             <button
@@ -132,7 +132,7 @@ import { RouterLink } from 'vue-router'
               ></i>
             </button>
           </li>
-          <slot/>
+          <slot />
         </ul>
       </div>
     </div>

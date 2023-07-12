@@ -51,7 +51,7 @@ import CategoriesSidebarCelebrity from '@/components/CategoriesSidebarCelebrity.
         :job="celebrity.job"
       />
     </div>
-    <a class="item-hover" href="#"
+    <a class="item-hover"
       >SEE ALL CELEBRITIES <i class="fa fa-chevron-right fa-sm fa-fw"></i
     ></a>
   </aside>

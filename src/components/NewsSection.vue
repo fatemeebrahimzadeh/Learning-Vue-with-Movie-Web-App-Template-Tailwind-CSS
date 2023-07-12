@@ -19,7 +19,7 @@ import NewsSidebar from '@/components/NewsSidebar.vue'
             <img class="rounded-lg" :src="BlogItem1" alt="news-person" />
             <div class="flex flex-col gap-3">
               <h3>
-                <a class="text-blue item-hover" href="#"
+                <a class="text-blue item-hover"
                   >Brie Larson to play first female white house candidate Victoria Woodull in Amazon
                   film</a
                 >

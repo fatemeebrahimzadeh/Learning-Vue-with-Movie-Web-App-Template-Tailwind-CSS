@@ -7,7 +7,7 @@ defineProps(['name', 'job', 'src'])
     <img class="rounded-lg" :src="src" alt="celebrity1" />
     <div class="celebrity-detail">
       <h6 class="celebrity-name">
-        <a class="item-hover" href="#">{{ name }}</a>
+        <a class="item-hover">{{ name }}</a>
       </h6>
       <span class="celebrity-job">{{ job }}</span>
     </div>

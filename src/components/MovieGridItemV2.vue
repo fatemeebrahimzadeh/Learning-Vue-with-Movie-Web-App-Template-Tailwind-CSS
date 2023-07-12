@@ -7,7 +7,7 @@ import mv4 from '@/assets/images/mv4.jpg'
     class="bg-light-backgroundColor dark:bg-dark-secondary sm:col-span-2 rounded-md shadow-lg text-center"
   >
     <div class="flex flex-col items-center md:items-start md:flex-row px-4 max-w-4xl">
-      <a href="./single-movie.html" class="flex-none">
+      <a class="flex-none">
         <img
           :src="mv4"
           alt="mv4"

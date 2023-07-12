@@ -19,7 +19,7 @@ import { RouterLink } from 'vue-router'
             </p>
             <p class="font-light">
               Call us:
-              <a class="text-white item-hover" href="#">(+01) 202 342 6789</a>
+              <a class="text-white item-hover">(+01) 202 342 6789</a>
             </p>
           </div>
         </section>
@@ -27,22 +27,22 @@ import { RouterLink } from 'vue-router'
           <h4 class="footer-section__header">Resources</h4>
           <ul class="footer-section__ul">
             <li>
-              <a href="#" class="item-hover">About</a>
+              <a class="item-hover">About</a>
             </li>
             <li>
-              <a href="#" class="item-hover">Blockbuster</a>
+              <a class="item-hover">Blockbuster</a>
             </li>
             <li>
-              <a href="#" class="item-hover">Contact Us</a>
+              <a class="item-hover">Contact Us</a>
             </li>
             <li>
-              <a href="#" class="item-hover">Forums</a>
+              <a class="item-hover">Forums</a>
             </li>
             <li>
-              <a href="#" class="item-hover">Blog</a>
+              <a class="item-hover">Blog</a>
             </li>
             <li>
-              <a href="#" class="item-hover">Help Center</a>
+              <a class="item-hover">Help Center</a>
             </li>
           </ul>
         </section>
@@ -50,13 +50,13 @@ import { RouterLink } from 'vue-router'
           <h4 class="footer-section__header">Legal</h4>
           <ul class="footer-section__ul">
             <li>
-              <a href="#" class="item-hover">Term Of Use</a>
+              <a class="item-hover">Term Of Use</a>
             </li>
             <li>
-              <a href="#" class="item-hover">Privacy Policy</a>
+              <a class="item-hover">Privacy Policy</a>
             </li>
             <li>
-              <a href="#" class="item-hover">Security</a>
+              <a class="item-hover">Security</a>
             </li>
           </ul>
         </section>
@@ -70,10 +70,10 @@ import { RouterLink } from 'vue-router'
               <router-link to="/favorite-movies" class="item-hover">Watchlist</router-link>
             </li>
             <li>
-              <a href="./favorite-movies.html" class="item-hover">Collections</a>
+              <a class="item-hover">Collections</a>
             </li>
             <li>
-              <a href="#" class="item-hover">User Guide</a>
+              <a class="item-hover">User Guide</a>
             </li>
           </ul>
         </section>
@@ -98,7 +98,7 @@ import { RouterLink } from 'vue-router'
               <i class="fa fa-envelope fa-sm fa-fw"></i>
             </button>
           </div>
-          <a class="text-xs text-red" href="#"
+          <a class="text-xs text-red"
             >SUBSCRIBE NOW <i class="fa fa-chevron-right fa-sm fa-fw"></i
           ></a>
         </section>

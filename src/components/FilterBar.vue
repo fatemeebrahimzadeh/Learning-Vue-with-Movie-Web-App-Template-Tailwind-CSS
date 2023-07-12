@@ -33,14 +33,12 @@
     <button
       id="movie-list-btn"
       class="block text-center sm:basis-1/12 hover:text-red hover:dark:text-yellow sm:flex sm:items-center sm:justify-center sm:border-r-[1px] sm:border-light-secondary sm:dark:border-dark-100 w-full h-full"
-      href="#"
     >
       <i class="fa fa-fw fa-sm fa-list"></i>
     </button>
     <button
       id="movie-grid-btn"
       class="block text-center sm:basis-1/12 hover:text-red dark:hover:text-yellow sm:flex sm:items-center sm:justify-center w-full h-full"
-      href="#"
     >
       <i class="fa fa-fw fa-sm fa-th"></i>
     </button>

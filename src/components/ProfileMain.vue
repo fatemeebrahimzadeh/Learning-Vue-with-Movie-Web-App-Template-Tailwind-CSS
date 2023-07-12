@@ -8,7 +8,7 @@
 
         <ul class="flex flex-row justify-around w-full">
           <li class="single-movie-tab hidden sm:block">
-            <a href="./favorite-movies.html"> FAVORITE MOVIES </a>
+            <a> FAVORITE MOVIES </a>
           </li>
           <li class="single-movie-tab">
             <div
@@ -21,7 +21,7 @@
             </div>
           </li>
           <li class="single-movie-tab hidden sm:block">
-            <a href="./watch-list.html">WATCH LIST</a>
+            <a>WATCH LIST</a>
           </li>
         </ul>
 

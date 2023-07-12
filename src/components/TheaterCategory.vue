@@ -38,7 +38,7 @@ const theaters = [
   <section class="movie">
     <header class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 sm:items-center">
       <h2 class="text-black dark:text-white text-3xl max-[450px]:text-center">IN THEATER</h2>
-      <a class="text-sm item-hover max-[450px]:text-center" href="#"
+      <a class="text-sm item-hover max-[450px]:text-center"
         >VIEW ALL <i class="fa fa-chevron-right fa-sm fa-fw"></i
       ></a>
     </header>

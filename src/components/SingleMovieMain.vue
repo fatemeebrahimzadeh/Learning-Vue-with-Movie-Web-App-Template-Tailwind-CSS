@@ -38,11 +38,11 @@ const year = computed(() => {
           {{ year }}
         </h1>
         <div class="flex flex-col sm:flex-row gap-5 text-red">
-          <a href="#" class="flex items-center gap-1">
+          <a class="flex items-center gap-1">
             <span class="circle-border before:content-heart"></span>
             <span>ADD TO FAVORITE</span>
           </a>
-          <a href="#" class="flex items-center gap-1">
+          <a class="flex items-center gap-1">
             <span class="circle-border before:content-share"></span>
             <span>SHARE</span>
           </a>
@@ -98,9 +98,7 @@ const year = computed(() => {
                 class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 border-b-[1px] border-dark-100"
               >
                 <h2 class="text-black dark:text-white">VIDEOS & PHOTOS</h2>
-                <a
-                  class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light"
-                  href="#"
+                <a class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light"
                   >All 5 Videos & 245 Photos <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
@@ -121,9 +119,7 @@ const year = computed(() => {
                 class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 border-b-[1px] border-dark-100"
               >
                 <h2 class="text-black dark:text-white">CAST</h2>
-                <a
-                  class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light"
-                  href="#"
+                <a class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light"
                   >Full Cast & Crew <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
@@ -136,9 +132,7 @@ const year = computed(() => {
                 class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 border-b-[1px] border-dark-100"
               >
                 <h2 class="text-black dark:text-white">USER REVIEWS</h2>
-                <a
-                  class="text-sm text-blue hover:text-red dark:hover:text-yellow font-light"
-                  href="#"
+                <a class="text-sm text-blue hover:text-red dark:hover:text-yellow font-light"
                   >See All 56 Reviews <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
@@ -177,9 +171,7 @@ const year = computed(() => {
                 class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 border-b-[1px] border-dark-100"
               >
                 <h2 class="text-black dark:text-white">REALATED MOVIES</h2>
-                <a
-                  class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light"
-                  href="#"
+                <a class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light"
                   >VIEW ALL <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>

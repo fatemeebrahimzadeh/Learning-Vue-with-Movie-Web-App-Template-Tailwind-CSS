@@ -50,7 +50,7 @@ function redirectToSingleMoviePage() {
         </span>
       </div>
       <h6 class="slider-item__title-in__heading">
-        <a href="#">{{ title }}</a>
+        <a >{{ title }}</a>
       </h6>
       <p>
         <i class="fa-fw fa-md fa-star text-[#f5b50a] fa"></i

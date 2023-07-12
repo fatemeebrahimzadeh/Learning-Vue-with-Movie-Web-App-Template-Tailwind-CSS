@@ -4,7 +4,7 @@ defineProps(['src'])
 
 <template>
   <div class="movie-item relative group">
-    <a href="./single-movie.html">
+    <a>
       <img class="flex-shrink-0 object-cover" :src="src" />
     </a>
   </div>

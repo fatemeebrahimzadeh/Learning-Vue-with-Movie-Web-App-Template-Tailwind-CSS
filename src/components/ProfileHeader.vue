@@ -9,7 +9,7 @@ import author from '@/assets/images/author.png'
     <div class="w-full h-full bg-lighten dark:bg-transparent">
       <div class="container flex flex-col h-full">
         <header-nav>
-          <a href="./profile.html">
+          <a>
             <img class="m-2" :src="author" alt="user" />
           </a>
         </header-nav>

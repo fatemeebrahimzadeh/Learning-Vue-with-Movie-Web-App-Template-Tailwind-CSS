@@ -4,7 +4,7 @@ import mv1 from '@/assets/images/mv1.jpg'
 
 <template>
   <article class="movie-list__card">
-    <a href="./single-movie.html">
+    <a>
       <img class="rounded-md max-w-[200px]" :src="mv1" alt="mv1" />
     </a>
     <div class="p-3 flex flex-col gap-3">
