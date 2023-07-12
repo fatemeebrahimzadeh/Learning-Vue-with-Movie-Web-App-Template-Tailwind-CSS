@@ -6,7 +6,7 @@ defineProps(['backdrop_src'])
 
 <template>
   <header
-    :style="{ backgroundImage: 'url(' + backdrop_src + ')' }"
+    :style="{ backgroundImage: `url(${backdrop_src})` }"
     class="w-full h-[500px] bg-cover backdrop-blur-sm"
   >
     <div class="w-full h-full bg-lighten dark:bg-transparent backdrop-blur-sm">
