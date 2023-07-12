@@ -1,3 +1,14 @@
+<script setup>
+const filteringOptions = [
+  { id: 1, title: 'Popularity Descending' },
+  { id: 2, title: 'Popularity Ascending' },
+  { id: 3, title: 'Rating Descending' },
+  { id: 4, title: 'Rating Ascending' },
+  { id: 5, title: 'Release date Descending' },
+  { id: 6, title: 'Release date Ascending' }
+]
+</script>
+
 <template>
   <div
     class="filter gap-2 sm:gap-0 sm:bg-light-backgroundColor dark:bg-transparent sm:border-y-[1px] sm:border-light-secondary sm:dark:border-dark-100 flex flex-col items-center sm:flex-row text-xs sm:h-8"
@@ -11,23 +22,13 @@
     <select
       class="max-w-[150px] border-[1px] sm:basis-2/12 font-light flex-shrink-0 inline-flex flex-col sm:flex-row sm:items-center sm:h-full text-center sm:border-0 sm:border-r-[1px] border-light-secondary dark:border-dark-100 text-black dark:text-text bg-transparent"
     >
-      <option class="bg-light-secondary dark:bg-dark-secondary" value="popularity">
-        Popularity Descending
-      </option>
-      <option class="bg-light-secondary dark:bg-dark-secondary" value="popularity">
-        Popularity Ascending
-      </option>
-      <option class="bg-light-secondary dark:bg-dark-secondary" value="rating">
-        Rating Descending
-      </option>
-      <option class="bg-light-secondary dark:bg-dark-secondary" value="rating">
-        Rating Ascending
-      </option>
-      <option class="bg-light-secondary dark:bg-dark-secondary" value="date">
-        Release date Descending
-      </option>
-      <option class="bg-light-secondary dark:bg-dark-secondary" value="date">
-        Release date Ascending
+      <option
+        v-for="filteringOption in filteringOptions"
+        :key="filteringOption.id"
+        class="bg-light-secondary dark:bg-dark-secondary"
+        :value="filteringOption.title"
+      >
+        {{ filteringOption.title }}
       </option>
     </select>
     <button
