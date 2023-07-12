@@ -1,7 +1,11 @@
 <script setup>
 import ads1 from '@/assets/images/ads1.png'
-
 import FavoriteMoviesSearchBar from '@/components/FavoriteMoviesSearchBar.vue'
+
+const socialMediaSections = [
+  { id: 1, title: 'FIND US ON FACEBOOK' },
+  { id: 2, title: 'TWITTER TO US' }
+]
 </script>
 
 <template>
@@ -15,15 +19,9 @@ import FavoriteMoviesSearchBar from '@/components/FavoriteMoviesSearchBar.vue'
     </section>
     <img :src="ads1" alt="ads" />
     <div class="h-full">
-      <section class="facebook min-h-[50%]">
+      <section v-for="socialMedia in socialMediaSections" :key="socialMedia.id" class="min-h-[50%]">
         <h3 class="text-black dark:text-white text-lg">
-          FIND US ON FACEBOOK
-          <hr class="h-1" />
-        </h3>
-      </section>
-      <section class="facebook min-h-[50%]">
-        <h3 class="text-black dark:text-white text-lg">
-          TWITTER TO US
+          {{ socialMedia.title }}
           <hr class="h-1" />
         </h3>
       </section>
