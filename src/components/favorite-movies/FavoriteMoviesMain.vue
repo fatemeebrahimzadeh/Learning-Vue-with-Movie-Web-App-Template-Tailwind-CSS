@@ -1,10 +1,10 @@
 <script setup>
-import FavoriteMoviesSidebar from '@/components/FavoriteMoviesSidebar.vue'
-import FilterBar from '@/components/FilterBar.vue'
-import MovieListCard from '@/components/MovieListCard.vue'
-import MovieGridItemV1 from '@/components/MovieGridItemV1.vue'
-import MovieGridItemV2 from '@/components/MovieGridItemV2.vue'
-import PaginationBar from '@/components/PaginationBar.vue'
+import FavoriteMoviesSidebar from '@/components/favorite-movies/FavoriteMoviesSidebar.vue'
+import FilterBar from '@/components/favorite-movies/FilterBar.vue'
+import MovieListCard from '@/components/favorite-movies/MovieListCard.vue'
+import MovieGridItemV1 from '@/components/favorite-movies/MovieGridItemV1.vue'
+import MovieGridItemV2 from '@/components/favorite-movies/MovieGridItemV2.vue'
+import PaginationBar from '@/components/favorite-movies/PaginationBar.vue'
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup>
-import ProfileHeader from '@/components/ProfileHeader.vue'
-import ProfileMain from '@/components/ProfileMain.vue'
+import ProfileHeader from '@/components/profile/ProfileHeader.vue'
+import ProfileMain from '@/components/profile/ProfileMain.vue'
 </script>
 
 <template>

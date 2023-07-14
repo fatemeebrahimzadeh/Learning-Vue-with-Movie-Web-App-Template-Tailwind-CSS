@@ -1,7 +1,7 @@
 <script setup>
-import CategoriesSidebar from '@/components/CategoriesSidebar.vue'
-import TheaterCategory from '@/components/TheaterCategory.vue'
-import TvCategory from '@/components/TvCategory.vue'
+import CategoriesSidebar from '@/components/home/category-section/CategoriesSidebar.vue'
+import TheaterCategory from '@/components/home/category-section/TheaterCategory.vue'
+import TvCategory from '@/components/home/category-section/TvCategory.vue'
 </script>
 
 <template>

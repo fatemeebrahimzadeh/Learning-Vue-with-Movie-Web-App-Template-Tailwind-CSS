@@ -1,8 +1,8 @@
 <script setup>
-import HeaderNav from '@/components/HeaderNav.vue'
-import HeaderSearchBar from '@/components/HeaderSearchBar.vue'
-import SocialMediaLinksList from '@/components/SocialMediaLinksList.vue'
-import HeaderSlider from '@/components/HeaderSlider.vue'
+import HeaderNav from '@/components/ui/HeaderNav.vue'
+import HeaderSearchBar from '@/components/ui/HeaderSearchBar.vue'
+import SocialMediaLinksList from '@/components/home/SocialMediaLinksList.vue'
+import HeaderSlider from '@/components/home/header-slider/HeaderSlider.vue'
 </script>
 
 <template>

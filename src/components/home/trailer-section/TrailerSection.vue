@@ -1,5 +1,5 @@
 <script setup>
-import TrailerSidebar from '@/components/TrailerSidebar.vue'
+import TrailerSidebar from '@/components/home/trailer-section/TrailerSidebar.vue'
 </script>
 
 <template>

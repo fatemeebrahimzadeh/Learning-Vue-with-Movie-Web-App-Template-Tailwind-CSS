@@ -1,8 +1,8 @@
 <script setup>
-import CategoryMovieItem from '@/components/CategoryMovieItem.vue'
-import CategoryAnchorTagsList from '@/components/CategoryAnchorTagsList.vue'
+import CategoryMovieItem from '@/components/home/category-section/CategoryMovieItem.vue'
+import CategoryAnchorTagsList from '@/components/home/category-section/CategoryAnchorTagsList.vue'
 import { inject, onMounted, ref } from 'vue'
-import { Axios } from '../utils/Axios'
+import { Axios } from '@/utils/Axios'
 
 import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
 

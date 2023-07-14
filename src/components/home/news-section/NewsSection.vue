@@ -2,8 +2,8 @@
 import ads2 from '@/assets/images/ads2.png'
 import BlogItem1 from '@/assets/images/blog-it1.jpg'
 
-import MoreNewsSection from '@/components/MoreNewsSection.vue'
-import NewsSidebar from '@/components/NewsSidebar.vue'
+import MoreNewsSection from '@/components/home/news-section/MoreNewsSection.vue'
+import NewsSidebar from '@/components/home/news-section/NewsSidebar.vue'
 </script>
 
 <template>

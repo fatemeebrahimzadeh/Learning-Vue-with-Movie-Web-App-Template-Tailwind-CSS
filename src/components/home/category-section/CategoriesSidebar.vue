@@ -1,4 +1,6 @@
 <script setup>
+import CategoriesSidebarCelebrity from '@/components/home/category-section/CategoriesSidebarCelebrity.vue'
+
 import ads1 from '@/assets/images/ads1.png'
 import ava1 from '@/assets/images/ava1.jpg'
 import ava2 from '@/assets/images/ava2.jpg'
@@ -31,8 +33,6 @@ const celebrities = [
     src: ava4
   }
 ]
-
-import CategoriesSidebarCelebrity from '@/components/CategoriesSidebarCelebrity.vue'
 </script>
 
 <template>
@@ -51,8 +51,6 @@ import CategoriesSidebarCelebrity from '@/components/CategoriesSidebarCelebrity.
         :job="celebrity.job"
       />
     </div>
-    <a class="item-hover"
-      >SEE ALL CELEBRITIES <i class="fa fa-chevron-right fa-sm fa-fw"></i
-    ></a>
+    <a class="item-hover">SEE ALL CELEBRITIES <i class="fa fa-chevron-right fa-sm fa-fw"></i></a>
   </aside>
 </template>

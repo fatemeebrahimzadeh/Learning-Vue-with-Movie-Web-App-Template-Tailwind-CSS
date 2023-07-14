@@ -1,5 +1,5 @@
 <script setup>
-import HeaderNav from '@/components/HeaderNav.vue'
+import HeaderNav from '@/components/ui/HeaderNav.vue'
 
 import author from '@/assets/images/author.png'
 </script>

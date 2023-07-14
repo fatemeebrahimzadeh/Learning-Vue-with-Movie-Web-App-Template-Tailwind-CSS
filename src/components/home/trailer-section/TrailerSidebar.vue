@@ -1,5 +1,5 @@
 <script setup>
-import TrailerItem from '@/components/TrailerItem.vue'
+import TrailerItem from '@/components/home/trailer-section/TrailerItem.vue'
 import trailer2 from '@/assets/images/trailer2.jpg'
 import trailer3 from '@/assets/images/trailer3.png'
 import trailer4 from '@/assets/images/trailer4.png'

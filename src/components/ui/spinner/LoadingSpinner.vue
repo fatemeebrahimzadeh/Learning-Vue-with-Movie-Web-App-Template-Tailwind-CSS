@@ -1,5 +1,5 @@
 <script setup>
-import LoadingBackdrop from '@/components/LoadingBackdrop.vue'
+import LoadingBackdrop from '@/components/ui/spinner/LoadingBackdrop.vue'
 import SyncLoader from 'vue-spinner/src/SyncLoader.vue'
 defineProps(['isShow'])
 </script>

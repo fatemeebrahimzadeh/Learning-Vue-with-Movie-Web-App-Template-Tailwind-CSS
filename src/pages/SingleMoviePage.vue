@@ -1,6 +1,6 @@
 <script setup>
-import SingleMovieHeader from '@/components/SingleMovieHeader.vue'
-import SingleMovieMain from '@/components/SingleMovieMain.vue'
+import SingleMovieHeader from '@/components/single-movie/SingleMovieHeader.vue'
+import SingleMovieMain from '@/components/single-movie/SingleMovieMain.vue'
 
 import { useRoute } from 'vue-router'
 const route = useRoute()

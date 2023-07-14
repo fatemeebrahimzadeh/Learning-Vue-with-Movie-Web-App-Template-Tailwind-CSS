@@ -8,6 +8,6 @@ defineEmits(['backdropHandler'])
 
 <style scoped>
 .backdrop {
-  @apply w-full h-full fixed z-10 left-0 top-0 backdrop-blur-sm flex justify-center items-center;
+  @apply w-full h-full fixed z-50 left-0 top-0 backdrop-blur-sm flex justify-center items-center;
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-import HeaderSliderMovieCard from '@/components/HeaderSliderMovieCard.vue'
+import HeaderSliderMovieCard from '@/components/home/header-slider/HeaderSliderMovieCard.vue'
 
 import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
 

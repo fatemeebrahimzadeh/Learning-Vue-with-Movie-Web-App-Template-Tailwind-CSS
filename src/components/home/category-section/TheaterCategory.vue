@@ -1,6 +1,6 @@
 <script setup>
-import CategoryMovieItem from '@/components/CategoryMovieItem.vue'
-import CategoryAnchorTagsList from '@/components/CategoryAnchorTagsList.vue'
+import CategoryMovieItem from '@/components/home/category-section/CategoryMovieItem.vue'
+import CategoryAnchorTagsList from '@/components/home/category-section/CategoryAnchorTagsList.vue'
 import MovieItem1 from '@/assets/images/mv-item1.jpg'
 import MovieItem2 from '@/assets/images/mv-item2.jpg'
 import MovieItem3 from '@/assets/images/mv-item3.jpg'

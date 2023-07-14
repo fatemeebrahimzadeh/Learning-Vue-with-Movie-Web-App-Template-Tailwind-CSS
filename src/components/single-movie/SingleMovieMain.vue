@@ -1,8 +1,8 @@
 <script setup>
-import SingleMovieSideBar from '@/components/SingleMovieSideBar.vue'
-import RelatedMovieItem from '@/components/RelatedMovieItem.vue'
-import SingleMovieItem from '@/components/SingleMovieItem.vue'
-import CastItem from '@/components/CastItem.vue'
+import SingleMovieSideBar from '@/components/single-movie/SingleMovieSideBar.vue'
+import RelatedMovieItem from '@/components/single-movie/RelatedMovieItem.vue'
+import SingleMovieItem from '@/components/single-movie/SingleMovieItem.vue'
+import CastItem from '@/components/single-movie/CastItem.vue'
 
 import image4 from '@/assets/images/image4.jpg'
 import ads1 from '@/assets/images/ads1.png'

@@ -1,6 +1,6 @@
 <script setup>
-import HeaderNav from '@/components/HeaderNav.vue'
-import HeaderSearchBar from '@/components/HeaderSearchBar.vue'
+import HeaderNav from '@/components/ui/HeaderNav.vue'
+import HeaderSearchBar from '@/components/ui/HeaderSearchBar.vue'
 
 import author from '@/assets/images/author.png'
 </script>

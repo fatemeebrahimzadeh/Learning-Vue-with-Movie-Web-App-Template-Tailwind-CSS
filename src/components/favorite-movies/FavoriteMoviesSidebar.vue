@@ -1,6 +1,6 @@
 <script setup>
 import ads1 from '@/assets/images/ads1.png'
-import FavoriteMoviesSearchBar from '@/components/FavoriteMoviesSearchBar.vue'
+import FavoriteMoviesSearchBar from '@/components/favorite-movies/FavoriteMoviesSearchBar.vue'
 
 const socialMediaSections = [
   { id: 1, title: 'FIND US ON FACEBOOK' },
