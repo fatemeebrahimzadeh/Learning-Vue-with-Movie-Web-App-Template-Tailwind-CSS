@@ -2,44 +2,40 @@
 import SingleMovieHeader from '@/components/single-movie/SingleMovieHeader.vue'
 import SingleMovieMain from '@/components/single-movie/SingleMovieMain.vue'
 
+import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
+
+import { Axios } from '@/utils/Axios.js'
 import { useRoute } from 'vue-router'
 const route = useRoute()
+import { onMounted, ref } from 'vue'
 
-import MvItem1 from '@/assets/images/mv-item1.jpg'
-import MvItem2 from '@/assets/images/mv-item2.jpg'
-import MvItem3 from '@/assets/images/mv-item3.jpg'
-import MvItem4 from '@/assets/images/mv-item4.jpg'
+const movie = ref({})
+const relatedMovies = ref({})
 
-const relatedMovies = [
-  {
-    id: 1,
-    src: MvItem1
-  },
-  {
-    id: 2,
-    src: MvItem2
-  },
-  {
-    id: 3,
-    src: MvItem3
-  },
-  {
-    id: 4,
-    src: MvItem4
+onMounted(async () => {
+  try {
+    const movieDetail = await Axios.get(`/movie/${route.query.movieId}?language=en-US`)
+    movie.value = movieDetail.data
+    const recommendedMovies = await Axios.get(
+      `/movie/${route.query.movieId}/recommendations?language=en-US&page=1`
+    )
+    relatedMovies.value = recommendedMovies.data.results.slice(0, 4)
+  } catch (error) {
+    console.error(error)
   }
-]
+})
 </script>
 
 <template>
-  <single-movie-header :backdrop_src="route.query.backdrop_path" />
+  <single-movie-header :backdrop_src="`${API_IMAGE_BASE_URL}w1280${movie.backdrop_path}`" />
   <single-movie-main
-    :src="route.query.src"
-    :title="route.query.title"
-    :rate="route.query.rate"
-    :computedGenres="route.query.computedGenres"
-    :release_date="route.query.release_date"
-    :vote_count="route.query.vote_count"
-    :overview="route.query.overview"
+    :src="`${API_IMAGE_BASE_URL}w342${movie.poster_path}`"
+    :title="movie.title"
+    :release_date="movie.release_date"
+    :vote_count="movie.vote_count"
+    :overview="movie.overview"
+    :rate="movie.vote_average"
+    :genres="movie.genres"
     :relatedMovies="relatedMovies"
   />
 </template>

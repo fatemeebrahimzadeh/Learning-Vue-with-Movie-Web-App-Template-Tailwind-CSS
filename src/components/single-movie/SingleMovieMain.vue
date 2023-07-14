@@ -4,6 +4,8 @@ import RelatedMovieItem from '@/components/single-movie/RelatedMovieItem.vue'
 import SingleMovieItem from '@/components/single-movie/SingleMovieItem.vue'
 import CastItem from '@/components/single-movie/CastItem.vue'
 
+import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
+
 import image4 from '@/assets/images/image4.jpg'
 import ads1 from '@/assets/images/ads1.png'
 import { computed } from 'vue'
@@ -12,7 +14,7 @@ const props = defineProps([
   'src',
   'title',
   'rate',
-  'computedGenres',
+  'genres',
   'release_date',
   'vote_count',
   'overview',
@@ -180,7 +182,7 @@ const year = computed(() => {
                 <related-movie-item
                   v-for="relatedMovie in relatedMovies"
                   :key="relatedMovie.id"
-                  :src="relatedMovie.src"
+                  :src="`${API_IMAGE_BASE_URL}w342${relatedMovie.poster_path}`"
                 />
               </div>
             </div>
@@ -219,7 +221,7 @@ const year = computed(() => {
             <div class="text-black dark:text-text">
               Genres:
               <div>
-                <span class="" v-for="genre in computedGenres" :key="genre.id">
+                <span class="" v-for="genre in genres" :key="genre.id">
                   <span class="text-blue hover hover:cursor-pointer font-light">{{
                     genre.name
                   }}</span>

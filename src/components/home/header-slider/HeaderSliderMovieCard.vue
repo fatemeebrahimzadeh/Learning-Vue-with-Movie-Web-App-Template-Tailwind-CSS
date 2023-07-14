@@ -5,16 +5,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const props = defineProps([
-  'src',
-  'title',
-  'rate',
-  'genre_ids',
-  'release_date',
-  'vote_count',
-  'overview',
-  'backdrop_path'
-])
+const props = defineProps(['src', 'title', 'rate', 'genre_ids', 'id'])
 
 const computedGenres = computed(() => {
   return props.genre_ids.map((id) => {
@@ -26,7 +17,7 @@ const computedGenres = computed(() => {
 function redirectToSingleMoviePage() {
   router.push({
     path: '/single-movie',
-    query: { ...props, computedGenres: computedGenres.value }
+    query: { movieId: props.id }
   })
 }
 </script>
@@ -50,7 +41,7 @@ function redirectToSingleMoviePage() {
         </span>
       </div>
       <h6 class="slider-item__title-in__heading">
-        <a >{{ title }}</a>
+        <a>{{ title }}</a>
       </h6>
       <p>
         <i class="fa-fw fa-md fa-star text-[#f5b50a] fa"></i
