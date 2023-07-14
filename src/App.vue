@@ -1,6 +1,4 @@
 <script setup>
-import MainLayout from '@/layouts/MainLayout.vue'
-
 import { RouterView } from 'vue-router'
 import { provide, ref } from 'vue'
 
@@ -14,7 +12,5 @@ provide('loading-state', { isShowLoading, updateLoadingState })
 </script>
 
 <template>
-  <MainLayout>
-    <RouterView />
-  </MainLayout>
+  <RouterView />
 </template>

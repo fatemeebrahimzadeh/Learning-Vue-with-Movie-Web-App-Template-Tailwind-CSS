@@ -7,7 +7,7 @@ const { isShowLoading } = inject('loading-state')
 </script>
 
 <template>
-  <slot />
+  <router-view></router-view>
   <footer-content />
   <loading-spinner :isShow="isShowLoading" />
 </template>
