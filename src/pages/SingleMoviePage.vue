@@ -7,10 +7,13 @@ import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
 import { Axios } from '@/utils/Axios.js'
 import { useRoute } from 'vue-router'
 const route = useRoute()
-import { onMounted, ref } from 'vue'
+import { inject, onMounted, ref } from 'vue'
+import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
 
 const movie = ref({})
 const relatedMovies = ref({})
+const { updateLoadingVisibility } = inject(LOADING_VISIBILITY)
+updateLoadingVisibility(true)
 
 onMounted(async () => {
   try {
@@ -22,6 +25,8 @@ onMounted(async () => {
     relatedMovies.value = recommendedMovies.data.results.slice(0, 4)
   } catch (error) {
     console.error(error)
+  } finally {
+    updateLoadingVisibility(false)
   }
 })
 </script>

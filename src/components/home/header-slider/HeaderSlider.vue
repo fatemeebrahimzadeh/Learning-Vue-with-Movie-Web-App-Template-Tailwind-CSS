@@ -1,14 +1,14 @@
 <script setup>
 import HeaderSliderMovieCard from '@/components/home/header-slider/HeaderSliderMovieCard.vue'
-
+import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
 import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
 
 import { Axios } from '@/utils/Axios.js'
 import { inject, onMounted, ref } from 'vue'
 let movies = ref([])
 
-const { updateLoadingState } = inject('loading-state')
-updateLoadingState(true)
+const { updateLoadingVisibility } = inject(LOADING_VISIBILITY)
+updateLoadingVisibility(true)
 
 onMounted(async () => {
   try {
@@ -17,7 +17,7 @@ onMounted(async () => {
   } catch (error) {
     console.error(error)
   } finally {
-    updateLoadingState(false)
+    updateLoadingVisibility(false)
   }
 })
 </script>

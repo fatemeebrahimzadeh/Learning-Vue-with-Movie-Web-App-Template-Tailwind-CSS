@@ -3,12 +3,12 @@ import CategoryMovieItem from '@/components/home/category-section/CategoryMovieI
 import CategoryAnchorTagsList from '@/components/home/category-section/CategoryAnchorTagsList.vue'
 import { inject, onMounted, ref } from 'vue'
 import { Axios } from '@/utils/Axios'
-
+import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
 import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
 
 let tvShows = ref([])
-const { updateLoadingState } = inject('loading-state')
-updateLoadingState(true)
+const { updateLoadingVisibility } = inject(LOADING_VISIBILITY)
+updateLoadingVisibility(true)
 
 onMounted(async () => {
   try {
@@ -19,7 +19,7 @@ onMounted(async () => {
   } catch (error) {
     console.error(error)
   } finally {
-    updateLoadingState(false)
+    updateLoadingVisibility(false)
   }
 })
 </script>
