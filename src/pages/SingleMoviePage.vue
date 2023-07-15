@@ -1,10 +1,9 @@
 <script setup>
 import SingleMovieHeader from '@/components/single-movie/SingleMovieHeader.vue'
 import SingleMovieMain from '@/components/single-movie/SingleMovieMain.vue'
-
 import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
-
-import { Axios } from '@/utils/Axios.js'
+import { MOVIE_DETAILS_URL } from '@/constants/endpoints.js'
+import { Axios } from '@/utils/axios.js'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 import { inject, onMounted, ref } from 'vue'
@@ -17,10 +16,10 @@ updateLoadingVisibility(true)
 
 onMounted(async () => {
   try {
-    const movieDetail = await Axios.get(`/movie/${route.query.movieId}?language=en-US`)
+    const movieDetail = await Axios.get(`${MOVIE_DETAILS_URL(route.query.movieId)}?language=en-US`)
     movie.value = movieDetail.data
     const recommendedMovies = await Axios.get(
-      `/movie/${route.query.movieId}/recommendations?language=en-US&page=1`
+      `${MOVIE_DETAILS_URL(route.query.movieId)}/recommendations?language=en-US&page=1`
     )
     relatedMovies.value = recommendedMovies.data.results.slice(0, 4)
   } catch (error) {

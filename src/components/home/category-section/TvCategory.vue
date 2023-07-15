@@ -2,9 +2,10 @@
 import CategoryMovieItem from '@/components/home/category-section/CategoryMovieItem.vue'
 import CategoryAnchorTagsList from '@/components/home/category-section/CategoryAnchorTagsList.vue'
 import { inject, onMounted, ref } from 'vue'
-import { Axios } from '@/utils/Axios'
+import { Axios } from '@/utils/axios.js'
 import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
 import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
+import { TV_SHOWS_URL } from '@/constants/endpoints.js'
 
 let tvShows = ref([])
 const { updateLoadingVisibility } = inject(LOADING_VISIBILITY)
@@ -12,9 +13,7 @@ updateLoadingVisibility(true)
 
 onMounted(async () => {
   try {
-    const response = await Axios.get(
-      '/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc'
-    )
+    const response = await Axios.get(TV_SHOWS_URL)
     tvShows.value = response.data.results.slice(0, 4)
   } catch (error) {
     console.error(error)

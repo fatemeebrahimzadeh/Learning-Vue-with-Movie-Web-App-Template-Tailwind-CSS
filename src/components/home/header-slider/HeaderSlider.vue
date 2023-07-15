@@ -2,8 +2,8 @@
 import HeaderSliderMovieCard from '@/components/home/header-slider/HeaderSliderMovieCard.vue'
 import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
 import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
-
-import { Axios } from '@/utils/Axios.js'
+import { NOW_PLAYING_MOVIES_URL } from '@/constants/endpoints.js'
+import { Axios } from '@/utils/axios.js'
 import { inject, onMounted, ref } from 'vue'
 let movies = ref([])
 
@@ -12,7 +12,7 @@ updateLoadingVisibility(true)
 
 onMounted(async () => {
   try {
-    const response = await Axios.get('/movie/now_playing?language=en-US&page=1')
+    const response = await Axios.get(NOW_PLAYING_MOVIES_URL)
     movies.value = response.data.results
   } catch (error) {
     console.error(error)
