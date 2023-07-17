@@ -2,7 +2,7 @@
   <div
     class="search-form bg-light-backgroundColor dark:bg-dark-secondary dark:border-2 border-dark-800 flex flex-col items-center p-5"
   >
-    <form action="#" class="w-full p-1">
+    <form class="w-full p-1">
       <label class="text-sm" for="movie-name">Movie name:</label>
       <input
         name="movie-name"

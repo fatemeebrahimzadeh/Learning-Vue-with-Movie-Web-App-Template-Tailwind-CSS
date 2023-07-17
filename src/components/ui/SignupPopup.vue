@@ -1,24 +1,74 @@
 <script setup>
 import github from '@/assets/svgs/github.svg'
+import { watch, ref, inject } from 'vue'
+import { LOGIN, USER } from '@/constants/provide-keys.js'
+
+import { useToast } from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-sugar.css'
+const $toast = useToast()
+
+const user = inject(USER)
+const login = inject(LOGIN)
+defineProps(['isVisible'])
+const emit = defineEmits(['updateVisibility'])
+const username = ref('')
+const password = ref('')
+const retypePassword = ref('')
+
+function validationCheck() {
+  if (password.value === retypePassword.value) return true
+  return false
+}
+
+function signin() {
+  if (!validationCheck()) {
+    $toast.error('Please Confirm your password')
+    return
+  }
+  login(username.value, password.value)
+}
+
+watch(
+  () => user,
+  () => {
+    emit('updateVisibility', false)
+    $toast.success('Sign in successfully')
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
-  <!-- make display flex and remove hidden -->
   <section
     id="signup-popup"
-    class="hidden z-50 overlay fixed w-screen h-screen top-0 left-0 items-center justify-center bg-dark-backdrop font-dosis"
+    :class="{ flex: isVisible, hidden: !isVisible }"
+    @click="$emit('updateVisibility', false)"
+    class="z-50 overlay fixed w-screen h-screen top-0 left-0 items-center justify-center bg-dark-backdrop font-dosis"
   >
-    <div class="signup-content bg-white w-96 flex flex-col items-center p-5">
+    <div
+      @click="
+        (e) => {
+          e.stopPropagation()
+        }
+      "
+      class="signup-content bg-white w-96 flex flex-col items-center p-5"
+    >
       <h2 class="text-black text-2xl font-dosis">SIGN UP</h2>
-      <form action="#" class="w-full p-5">
+      <form @submit.prevent="signin" class="w-full p-5">
         <label class="text-black" for="username">USERNAME:</label>
-        <input name="username" type="text" class="sign-up__input" required />
+        <input name="username" type="text" class="sign-up__input" required v-model="username" />
         <label class="text-black" for="email">YOUR EMAIL:</label>
-        <input name="email" type="email" class="sign-up__input" required />
+        <input name="email" type="email" class="sign-up__input" />
         <label class="text-black" for="password">PASSWORD:</label>
-        <input name="password" type="password" class="sign-up__input" required />
+        <input name="password" type="password" class="sign-up__input" required v-model="password" />
         <label class="text-black" for="retype-password">RE-TYPE PASSWORD:</label>
-        <input name="retype-password" type="password" class="sign-up__input" required />
+        <input
+          name="retype-password"
+          type="password"
+          class="sign-up__input"
+          required
+          v-model="retypePassword"
+        />
         <button class="w-full bg-red px-5 py-3 text-white mb-5" type="submit">SIGN UP</button>
 
         <button

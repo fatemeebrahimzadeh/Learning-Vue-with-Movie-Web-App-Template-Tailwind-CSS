@@ -3,7 +3,15 @@ import logo from '@/assets/images/logo.png'
 import MobileNavbarIcon from '@/assets/svgs/MobileNavbarIcon.vue'
 import UnitedStates from '@/assets/svgs/flags/UnitedStates.vue'
 import Iran from '@/assets/svgs/flags/Iran.vue'
+import UserAvatar from '@/components/ui/UserAvatar.vue'
+import SignupButton from '@/components/ui/SignupButton.vue'
 import { RouterLink } from 'vue-router'
+import { inject, computed } from 'vue'
+import { USER } from '@/constants/provide-keys.js'
+
+const user = inject(USER)
+console.log(user.value)
+const currentComponent = computed(() => (user.value !== null ? UserAvatar : SignupButton))
 </script>
 
 <template>
@@ -132,7 +140,7 @@ import { RouterLink } from 'vue-router'
               ></i>
             </button>
           </li>
-          <slot />
+          <component :is="currentComponent" />
         </ul>
       </div>
     </div>

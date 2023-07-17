@@ -25,7 +25,7 @@
           </li>
         </ul>
 
-        <form action="#" class="w-full p-5">
+        <form class="w-full p-5">
           <label for="username">USERNAME:</label>
           <input
             name="username"

@@ -11,11 +11,7 @@ defineProps(['backdrop_src'])
   >
     <div class="w-full h-full bg-lighten dark:bg-transparent backdrop-blur-sm">
       <div class="container">
-        <header-nav>
-          <li class="button">
-            <button id="signup-btn">SIGN UP</button>
-          </li>
-        </header-nav>
+        <header-nav />
         <header-search-bar />
       </div>
     </div>
