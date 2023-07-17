@@ -10,8 +10,8 @@ import { inject, computed } from 'vue'
 import { USER } from '@/constants/provide-keys.js'
 
 const user = inject(USER)
-console.log(user.value)
-const currentComponent = computed(() => (user.value !== null ? UserAvatar : SignupButton))
+
+const currentComponent = computed(() => (!user.value ? SignupButton : UserAvatar))
 </script>
 
 <template>

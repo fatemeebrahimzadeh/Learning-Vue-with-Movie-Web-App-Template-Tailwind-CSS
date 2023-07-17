@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 const isSignupPopupShow = ref(false)
+import SignupPopup from '@/components/ui/SignupPopup.vue'
 
 function updateSignupPopupVisibility(isShow = false) {
   isSignupPopupShow.value = isShow
