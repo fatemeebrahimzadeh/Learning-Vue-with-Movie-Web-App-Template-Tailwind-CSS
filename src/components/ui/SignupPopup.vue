@@ -1,13 +1,13 @@
 <script setup>
 import github from '@/assets/svgs/github.svg'
-import { watch, ref, inject } from 'vue'
+import { ref, inject } from 'vue'
 import { LOGIN, USER } from '@/constants/provide-keys.js'
-
 import { useToast } from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-sugar.css'
 const $toast = useToast()
 
 const user = inject(USER)
+
 const login = inject(LOGIN)
 defineProps(['isVisible'])
 const emit = defineEmits(['updateVisibility'])
@@ -20,22 +20,17 @@ function validationCheck() {
   return false
 }
 
-function signin() {
+async function signin() {
   if (!validationCheck()) {
     $toast.error('Please Confirm your password')
     return
   }
-  login(username.value, password.value)
-}
-
-watch(
-  () => user,
-  () => {
+  await login(username.value, password.value)
+  if (user.value) {
     emit('updateVisibility', false)
     $toast.success('Sign in successfully')
-  },
-  { immediate: true }
-)
+  }
+}
 </script>
 
 <template>

@@ -9,6 +9,10 @@ import { LOGIN, USER } from '@/constants/provide-keys.js'
 import { computed } from 'vue'
 const USER_ID = 'user_id'
 
+import { useToast } from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-sugar.css'
+const $toast = useToast()
+
 export default function useAuth(app) {
   const user = computed({
     get: () => JSON.parse(sessionStorage.getItem(USER_ID) || 'null'),
@@ -82,6 +86,19 @@ export default function useAuth(app) {
 
     user.value = await getAccountData()
   }
+
+  app.config.globalProperties.$router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth) {
+      if (!user.value) {
+        $toast.error('Please Sign in first')
+        next(false)
+      } else {
+        next()
+      }
+    } else {
+      next()
+    }
+  })
 
   app.provide(USER, user)
   app.provide(LOGIN, login)
