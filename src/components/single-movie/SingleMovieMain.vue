@@ -3,8 +3,15 @@ import SingleMovieSideBar from '@/components/single-movie/SingleMovieSideBar.vue
 import RelatedMovieItem from '@/components/single-movie/RelatedMovieItem.vue'
 import SingleMovieItem from '@/components/single-movie/SingleMovieItem.vue'
 import CastItem from '@/components/single-movie/CastItem.vue'
-
+import { Axios } from '@/utils/axios.js'
+import { USER } from '@/constants/provide-keys.js'
 import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
+import { ADD_MOVIE_TO_FAVORITE_LIST } from '@/constants/endpoints.js'
+import { inject } from 'vue'
+import { useToast } from 'vue-toast-notification'
+const $toast = useToast()
+
+const user = inject(USER)
 
 // import image4 from '@/assets/images/image4.jpg'
 import ads1 from '@/assets/images/ads1.png'
@@ -25,9 +32,9 @@ const props = defineProps([
   'movieReview',
   'movieCast',
   'movieCrew',
-  'type'
+  'type',
+  'id'
 ])
-console.log(props.movieKeywords)
 
 const year = computed(() => {
   return props.release_date && new Date(props.release_date).getFullYear()
@@ -65,6 +72,23 @@ const reviewDate = computed(() => {
 const reviewDetail = computed(() => {
   return props.movieReview.author_details && props.movieReview.author_details.rating
 })
+
+async function addMovieToFavoriteList() {
+  if (!user.value) {
+    $toast.error('Please log in first!')
+  } else {
+    try {
+      await Axios.post(ADD_MOVIE_TO_FAVORITE_LIST(user), {
+        media_type: 'movie',
+        media_id: props.id,
+        favorite: true
+      })
+      $toast.success('Success!')
+    } catch (error) {
+      $toast.error('Somthing wrong happened!')
+    }
+  }
+}
 </script>
 
 <template>
@@ -81,7 +105,7 @@ const reviewDetail = computed(() => {
           {{ year }}
         </h1>
         <div class="flex flex-col sm:flex-row gap-5 text-red">
-          <a class="flex items-center gap-1">
+          <a @click="addMovieToFavoriteList" class="flex items-center gap-1 hover:cursor-pointer">
             <span class="circle-border before:content-heart"></span>
             <span>ADD TO FAVORITE</span>
           </a>

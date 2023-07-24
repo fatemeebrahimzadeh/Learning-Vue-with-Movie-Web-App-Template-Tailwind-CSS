@@ -111,5 +111,6 @@ onMounted(async () => {
     :movieCast="movieCast"
     :movieCrew="movieCrew"
     :type="route.query.type"
+    :id="route.query.movieId"
   />
 </template>

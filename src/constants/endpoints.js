@@ -19,3 +19,5 @@ export const MOVIE_REVIEWS_URL = (id) => `/movie/${id}/reviews`
 export const TV_SERIES_REVIEWS_URL = (id) => `/tv/${id}/reviews`
 export const MOVIE_CREDITS_URL = (id) => `/movie/${id}/credits`
 export const TV_SERIES_CREDITS_URL = (id) => `/tv/${id}/credits`
+export const ADD_MOVIE_TO_FAVORITE_LIST = (account_id) => `/account/${account_id}/favorite`
+export const GET_FAVORITE_MOVIE_LIST = (account_id) => `/account/${account_id}/favorite/movies`
