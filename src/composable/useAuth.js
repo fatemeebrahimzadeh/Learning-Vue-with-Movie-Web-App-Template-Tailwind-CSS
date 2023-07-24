@@ -10,7 +10,6 @@ import { computed } from 'vue'
 const USER_ID = 'user_id'
 
 import { useToast } from 'vue-toast-notification'
-import 'vue-toast-notification/dist/theme-sugar.css'
 const $toast = useToast()
 
 export default function useAuth(app) {

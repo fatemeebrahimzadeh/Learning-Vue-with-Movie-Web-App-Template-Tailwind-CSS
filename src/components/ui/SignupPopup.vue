@@ -3,7 +3,6 @@ import github from '@/assets/svgs/github.svg'
 import { ref, inject } from 'vue'
 import { LOGIN, USER } from '@/constants/provide-keys.js'
 import { useToast } from 'vue-toast-notification'
-import 'vue-toast-notification/dist/theme-sugar.css'
 const $toast = useToast()
 
 const user = inject(USER)

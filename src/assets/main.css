@@ -190,7 +190,7 @@
     }
 
     .cast-name {
-        @apply text-blue item-hover hover:cursor-pointer;
+        @apply text-blue item-hover;
     }
 
     .keyword-span {

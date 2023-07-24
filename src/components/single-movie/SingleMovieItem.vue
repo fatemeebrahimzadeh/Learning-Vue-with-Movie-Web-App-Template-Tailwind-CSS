@@ -1,10 +1,10 @@
 <script setup>
-import image1 from '@/assets/images/image1.jpg'
+defineProps(['src'])
 </script>
 
 <template>
   <div class="movie-item relative group">
-    <img class="hover:cursor-pointer" :src="image1" alt="image1" />
+    <img class="hover:cursor-pointer" :src="src" alt="poster" />
     <div class="movie-item-hover"></div>
   </div>
 </template>

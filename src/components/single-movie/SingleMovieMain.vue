@@ -6,7 +6,7 @@ import CastItem from '@/components/single-movie/CastItem.vue'
 
 import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
 
-import image4 from '@/assets/images/image4.jpg'
+// import image4 from '@/assets/images/image4.jpg'
 import ads1 from '@/assets/images/ads1.png'
 import { computed } from 'vue'
 
@@ -18,11 +18,52 @@ const props = defineProps([
   'release_date',
   'vote_count',
   'overview',
-  'relatedMovies'
+  'relatedMovies',
+  'movieImages',
+  'run_time',
+  'movieKeywords',
+  'movieReview',
+  'movieCast',
+  'movieCrew',
+  'type'
 ])
+console.log(props.movieKeywords)
 
 const year = computed(() => {
   return props.release_date && new Date(props.release_date).getFullYear()
+})
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+]
+
+const releaseDate = computed(() => {
+  const date = props.release_date && new Date(props.release_date)
+
+  const month = props.release_date && months[date.getMonth()]
+  return props.release_date && `${month}, ${date.getDate()}, ${date.getFullYear()}`
+})
+
+const reviewDate = computed(() => {
+  const date = props.movieReview.created_at && new Date(props.movieReview.created_at)
+
+  const month = props.movieReview.created_at && months[date.getMonth()]
+  return props.movieReview.created_at && `${month}, ${date.getDate()}, ${date.getFullYear()}`
+})
+
+const reviewDetail = computed(() => {
+  return props.movieReview.author_details && props.movieReview.author_details.rating
 })
 </script>
 
@@ -101,20 +142,25 @@ const year = computed(() => {
                 class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 border-b-[1px] border-dark-100"
               >
                 <h2 class="text-black dark:text-white">VIDEOS & PHOTOS</h2>
-                <a class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light"
+                <a
+                  class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light hover:cursor-pointer"
                   >All 5 Videos & 245 Photos <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
               <div class="flex flex-wrap gap-2">
-                <single-movie-item v-for="index in 3" :key="index" />
-                <div class="movie-item relative group">
+                <single-movie-item
+                  v-for="(imageSrc, index) in movieImages"
+                  :key="index"
+                  :src="`${API_IMAGE_BASE_URL}w92${imageSrc.file_path}`"
+                />
+                <!-- <div class="movie-item relative group">
                   <img class="hover:cursor-pointer" :src="image4" alt="image4" />
                   <div class="movie-item-hover justify-center items-center">
                     <button>
                       <i class="fa-fw fa-lg fa fa-play text-red"></i>
                     </button>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div id="cast" class="scroll-m-10">
@@ -122,12 +168,13 @@ const year = computed(() => {
                 class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 border-b-[1px] border-dark-100"
               >
                 <h2 class="text-black dark:text-white">CAST</h2>
-                <a class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light"
+                <a
+                  class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light hover:cursor-pointer"
                   >Full Cast & Crew <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
               <div class="flex flex-col gap-10">
-                <cast-item v-for="index in 9" :key="index" />
+                <cast-item v-for="cast in movieCast" :key="cast.id" :cast="cast" />
               </div>
             </div>
             <div id="reviews" class="scroll-m-10">
@@ -135,37 +182,30 @@ const year = computed(() => {
                 class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 border-b-[1px] border-dark-100"
               >
                 <h2 class="text-black dark:text-white">USER REVIEWS</h2>
-                <a class="text-sm text-blue hover:text-red dark:hover:text-yellow font-light"
+                <a
+                  class="text-sm text-blue hover:text-red dark:hover:text-yellow font-light hover:cursor-pointer"
                   >See All 56 Reviews <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
               <div class="flex flex-col gap-2">
-                <h3 class="text-black dark:text-text">Best Marvel movie in my opinion</h3>
                 <span>
-                  <i class="fa-fw fa-sm fa-star text-yellow fa"></i>
-                  <i class="fa-fw fa-sm fa-star text-yellow fa"></i>
-                  <i class="fa-fw fa-sm fa-star text-yellow fa"></i>
-                  <i class="fa-fw fa-sm fa-star text-yellow fa"></i>
-                  <i class="fa-fw fa-sm fa-star fa"></i>
+                  <i
+                    v-for="index in 5"
+                    :key="index"
+                    class="fa-fw fa-xl fa-star fa"
+                    :class="{ 'text-yellow': index <= reviewDetail / 2 }"
+                  ></i>
                 </span>
                 <span
-                  >17 December 2016 by
+                  >{{ reviewDate }} by
                   <span
                     class="text-blue hover:text-red hover:dark:text-yellow hover:cursor-pointer font-extralight"
                   >
-                    hawaiipierson</span
+                    {{ movieReview.author }}</span
                   ></span
                 >
                 <p class="text-black dark:text-text font-light">
-                  This is by far one of my favorite movies from the MCU. The introduction of new
-                  Characters both good and bad also makes the movie more exciting. giving the
-                  characters more of a back story can also help audiences relate more to different
-                  characters better, and it connects a bond between the audience and actors or
-                  characters. Having seen the movie three times does not bother me here as it is as
-                  thrilling and exciting every time I am watching it. In other words, the movie is
-                  by far better than previous movies (and I do love everything Marvel), the plotting
-                  is splendid (they really do out do themselves in each film, there are no problems
-                  watching it more than once.
+                  {{ movieReview.content }}
                 </p>
               </div>
             </div>
@@ -174,7 +214,8 @@ const year = computed(() => {
                 class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 border-b-[1px] border-dark-100"
               >
                 <h2 class="text-black dark:text-white">REALATED MOVIES</h2>
-                <a class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light"
+                <a
+                  class="text-sm hover:text-red dark:hover:text-yellow text-blue font-light hover:cursor-pointer"
                   >VIEW ALL <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
@@ -182,7 +223,8 @@ const year = computed(() => {
                 <related-movie-item
                   v-for="relatedMovie in relatedMovies"
                   :key="relatedMovie.id"
-                  :src="`${API_IMAGE_BASE_URL}w342${relatedMovie.poster_path}`"
+                  :movie="relatedMovie"
+                  :type="type"
                 />
               </div>
             </div>
@@ -204,18 +246,9 @@ const year = computed(() => {
             </div>
             <div class="text-black dark:text-text">
               Stars:
-              <div>
-                <span class="text-blue hover hover:cursor-pointer font-light"
-                  >Robert Downey Jr</span
-                >
+              <div v-for="star in movieCast" :key="star.id">
+                <span class="text-blue hover hover:cursor-pointer font-light">{{ star.name }}</span>
                 <span>,</span>
-                <span class="text-blue hover hover:cursor-pointer font-light">Chris Evans</span>
-                <span>,</span>
-                <span class="text-blue hover hover:cursor-pointer font-light">Mark Ruffalo</span>
-                <span>,</span>
-                <span class="text-blue hover hover:cursor-pointer font-light"
-                  >Scarlett Johansson</span
-                >
               </div>
             </div>
             <div class="text-black dark:text-text">
@@ -231,11 +264,11 @@ const year = computed(() => {
             </div>
             <div class="text-black dark:text-text">
               Release Date:
-              <div class="font-light text-text">May 1, 2015 (U.S.A)</div>
+              <div class="font-light text-text">{{ releaseDate }}</div>
             </div>
             <div class="text-black dark:text-text">
               Run Time:
-              <div class="font-light text-text">141 min</div>
+              <div class="font-light text-text">{{ `${run_time} min` }}</div>
             </div>
             <div class="text-black dark:text-text">
               MMPA Rating:
@@ -244,10 +277,9 @@ const year = computed(() => {
             <div class="text-black dark:text-text">
               Plot Keywords:
               <div class="flex flex-wrap gap-1 text-text">
-                <span class="keyword-span">superhero marvel</span>
-                <span class="keyword-span">universe comic</span>
-                <span class="keyword-span">blockbuster</span>
-                <span class="keyword-span">final battle</span>
+                <span v-for="keyword in movieKeywords" :key="keyword.id" class="keyword-span">{{
+                  keyword.name
+                }}</span>
               </div>
             </div>
             <img :src="ads1" alt="ads" />
