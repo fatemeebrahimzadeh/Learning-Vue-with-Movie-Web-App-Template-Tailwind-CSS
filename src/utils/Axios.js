@@ -2,7 +2,10 @@ import axios from 'axios'
 import { API_BASE_URL, API_VERSION, API_READ_ACCESS_TOKEN } from '@/constants/api-constants.js'
 
 const basicConfigs = {
-  baseURL: `${API_BASE_URL}/${API_VERSION}`
+  baseURL: `${API_BASE_URL}/${API_VERSION}`,
+  headers: {
+    Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`
+  }
 }
 
 export class AxiosClass {
@@ -25,9 +28,3 @@ export class AxiosClass {
 }
 
 export const Axios = AxiosClass.getInstance()
-
-AxiosClass.setRequestInterceptor((config) => {
-  config.headers['Authorization'] = `Bearer ${API_READ_ACCESS_TOKEN}`
-  config.headers['accept'] = 'application/json'
-  return config
-})
