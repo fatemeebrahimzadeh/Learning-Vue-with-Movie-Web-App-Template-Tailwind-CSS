@@ -1,38 +1,25 @@
 <script setup>
+import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
 import CategoriesSidebarCelebrity from '@/components/home/category-section/CategoriesSidebarCelebrity.vue'
+import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
+import { POPULAR_PERSON_URL } from '@/constants/endpoints.js'
+import { Axios } from '@/utils/axios.js'
+import { inject, onMounted, ref } from 'vue'
+let celebrities = ref([])
 
-import ads1 from '@/assets/images/ads1.png'
-import ava1 from '@/assets/images/ava1.jpg'
-import ava2 from '@/assets/images/ava2.jpg'
-import ava3 from '@/assets/images/ava3.jpg'
-import ava4 from '@/assets/images/ava4.jpg'
+const { updateLoadingVisibility } = inject(LOADING_VISIBILITY)
+updateLoadingVisibility(true)
 
-const celebrities = [
-  {
-    id: 1,
-    name: 'Samuel N. Jack',
-    job: 'ACTOR',
-    src: ava1
-  },
-  {
-    id: 2,
-    name: 'The revenant',
-    job: 'ACTOR',
-    src: ava2
-  },
-  {
-    id: 3,
-    name: 'Die Hard',
-    job: 'ACTOR',
-    src: ava3
-  },
-  {
-    id: 4,
-    name: 'The walk',
-    job: 'ACTOR',
-    src: ava4
+onMounted(async () => {
+  try {
+    const response = await Axios.get(POPULAR_PERSON_URL)
+    celebrities.value = response.data.results.slice(0, 4)
+  } catch (error) {
+    console.error(error)
+  } finally {
+    updateLoadingVisibility(false)
   }
-]
+})
 </script>
 
 <template>
@@ -47,10 +34,12 @@ const celebrities = [
         v-for="celebrity in celebrities"
         :key="celebrity.id"
         :name="celebrity.name"
-        :src="celebrity.src"
-        :job="celebrity.job"
+        :src="`${API_IMAGE_BASE_URL}w45${celebrity.profile_path}`"
+        :job="celebrity.known_for_department"
       />
     </div>
-    <a class="item-hover">SEE ALL CELEBRITIES <i class="fa fa-chevron-right fa-sm fa-fw"></i></a>
+    <a class="item-hover hover:cursor-pointer"
+      >SEE ALL CELEBRITIES <i class="fa fa-chevron-right fa-sm fa-fw"></i
+    ></a>
   </aside>
 </template>
