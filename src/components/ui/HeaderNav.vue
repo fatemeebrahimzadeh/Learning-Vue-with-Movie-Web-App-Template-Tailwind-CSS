@@ -8,10 +8,19 @@ import SignupButton from '@/components/ui/SignupButton.vue'
 import { RouterLink } from 'vue-router'
 import { inject, computed } from 'vue'
 import { USER } from '@/constants/provide-keys.js'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const user = inject(USER)
 
 const currentComponent = computed(() => (!user.value ? SignupButton : UserAvatar))
+
+function redirectToFavoriteMoviesPage() {
+  router.push({
+    path: '/movie-list'
+  })
+}
 </script>
 
 <template>
@@ -91,8 +100,28 @@ const currentComponent = computed(() => (!user.value ? SignupButton : UserAvatar
           <li>
             <a class="block py-2 pl-3 pr-4 item-hover lg:p-0">NEWS</a>
           </li>
-          <li>
-            <a class="block py-2 pl-3 pr-4 item-hover lg:p-0">COMMUNITY</a>
+          <li class="group relative">
+            <button
+              id="dropdownNavbarLink"
+              data-dropdown-toggle="dropdownNavbar"
+              class="drop-down-nav-btn"
+            >
+              LISTS
+              <i class="fa fa-chevron-down fa-sm fa-fw drop-down-nav-icon"></i>
+            </button>
+            <!-- Dropdown menu -->
+            <div
+              id="dropdownNavbar"
+              class="z-10 hidden group-hover:inline-block group-hover:absolute top-[1.5rem] lg:top-[1.1rem] -left-10 font-normal divide-y rounded-lg shadow w-44 bg-dark-triority divide-gray-600"
+            >
+              <ul class="py-2 text-sm text-gray-400" aria-labelledby="dropdownLargeButton">
+                <li>
+                  <a class="block px-4 py-2 item-hover" @click="redirectToFavoriteMoviesPage"
+                    >Favorite Movies</a
+                  >
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="group relative">
             <button

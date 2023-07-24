@@ -14,8 +14,9 @@ provide(LOADING_VISIBILITY, { isShowLoading, updateLoadingVisibility })
 
 </script>
 
+
 <template>
-  <router-view></router-view>
+  <router-view />
   <footer-content />
   <loading-spinner :isShow="isShowLoading" />
 </template>
