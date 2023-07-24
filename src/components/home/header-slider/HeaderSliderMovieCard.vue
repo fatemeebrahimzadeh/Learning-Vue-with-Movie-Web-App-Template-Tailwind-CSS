@@ -23,7 +23,7 @@ function redirectToSingleMoviePage() {
 </script>
 
 <template>
-  <div class="movie-item relative group">
+  <div class="movie-item relative group hover:cursor-pointer">
     <div class="mv-img">
       <a @click="redirectToSingleMoviePage">
         <img class="slider-image" :src="src" />

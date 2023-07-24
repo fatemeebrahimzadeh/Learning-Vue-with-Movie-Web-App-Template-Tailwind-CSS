@@ -1,12 +1,21 @@
 <script setup>
-defineProps(['src', 'name', 'rate'])
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const props = defineProps(['src', 'name', 'rate', 'id', 'type'])
+
+function redirectToSingleMoviePage() {
+  router.push({
+    path: '/single-movie',
+    query: { movieId: props.id, type: props.type }
+  })
+}
 </script>
 
 <template>
   <div class="movie-item relative group">
     <img class="flex-shrink-0 object-cover" :src="src" />
     <div class="movie-item__hover">
-      <a class="button z-10"> READ MORE </a>
+      <a class="button z-10 hover:cursor-pointer" @click="redirectToSingleMoviePage"> READ MORE </a>
     </div>
     <div class="movie-item__title-in">
       <h6 class="movie-item__title-in__heading">
