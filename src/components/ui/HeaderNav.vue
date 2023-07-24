@@ -15,12 +15,15 @@ const router = useRouter()
 const user = inject(USER)
 
 const currentComponent = computed(() => (!user.value ? SignupButton : UserAvatar))
+<<<<<<< HEAD
 
 function redirectToFavoriteMoviesPage() {
   router.push({
     path: '/movie-list'
   })
 }
+=======
+>>>>>>> d6525152e723c76583f3a35abdb216d4887366bb
 </script>
 
 <template>

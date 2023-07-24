@@ -19,10 +19,17 @@ const routes = [
         }
       },
       {
+<<<<<<< HEAD
         path: '/movie-list',
         component: FavoritePage,
         meta: {
           requiresAuth: true
+=======
+        path: '/favorite-movies',
+        component: FavoritePage,
+        meta: {
+          requiresAuth: true // Set the meta property for authentication
+>>>>>>> d6525152e723c76583f3a35abdb216d4887366bb
         }
       },
       { path: '/single-movie', component: SingleMoviePage }
