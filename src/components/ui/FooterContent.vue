@@ -19,7 +19,7 @@ const legalOptions = [
 
 const accountOptions = [
   { id: 1, title: 'My Account', path: '/profile' },
-  { id: 2, title: 'Watchlist', path: '/favorite-movies' },
+  { id: 2, title: 'Watchlist', path: '' },
   { id: 3, title: 'Collections', path: '' },
   { id: 4, title: 'User Guide', path: '' }
 ]
