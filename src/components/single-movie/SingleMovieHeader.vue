@@ -1,12 +1,15 @@
 <script setup>
 import HeaderNav from '@/components/ui/HeaderNav.vue'
 import HeaderSearchBar from '@/components/ui/HeaderSearchBar.vue'
-defineProps(['backdrop_src'])
+import { useImage } from '@/composable/useImage.js'
+const { getMovieImageUrl } = useImage()
+defineProps(['movieData'])
 </script>
 
 <template>
   <header
-    :style="{ backgroundImage: `url(${backdrop_src})` }"
+    v-if="movieData"
+    :style="{ backgroundImage: `url(${getMovieImageUrl('w1280', movieData.data.backdrop_path)}` }"
     class="w-full h-[500px] bg-cover backdrop-blur-sm"
   >
     <div class="w-full h-full bg-lighten dark:bg-transparent backdrop-blur-sm">

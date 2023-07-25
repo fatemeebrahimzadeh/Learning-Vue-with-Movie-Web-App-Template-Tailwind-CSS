@@ -1,5 +1,5 @@
 // useAxios.js (composition function)
-import { ref, watchEffect } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Axios } from '@/utils/axios.js'
 import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
 import { inject } from 'vue'
@@ -23,7 +23,7 @@ const useAxios = (url, options = {}) => {
     }
   }
 
-  watchEffect(() => {
+  onMounted(() => {
     fetchData()
   })
 

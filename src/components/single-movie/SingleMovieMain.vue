@@ -4,74 +4,96 @@ import RelatedMovieItem from '@/components/single-movie/RelatedMovieItem.vue'
 import SingleMovieItem from '@/components/single-movie/SingleMovieItem.vue'
 import CastItem from '@/components/single-movie/CastItem.vue'
 import { Axios } from '@/utils/axios.js'
+import useAxios from '@/composable/useAxios.js'
 import { USER } from '@/constants/provide-keys.js'
-import { ADD_MOVIE_TO_FAVORITE_LIST } from '@/constants/endpoints.js'
 import { inject } from 'vue'
 import { useToast } from 'vue-toast-notification'
 import { useImage } from '@/composable/useImage.js'
+import { months } from '@/constants/months.js'
+import {
+  ADD_MOVIE_TO_FAVORITE_LIST,
+  MOVIE_DETAILS_URL,
+  TV_SERIES_DETAILS_URL,
+  TV_SERIES_IMAGES_URL,
+  MOVIE_IMAGES_URL,
+  TV_SERIES_KEYWORDS_URL,
+  MOVIE_KEYWORDS_URL,
+  TV_SERIES_REVIEWS_URL,
+  MOVIE_REVIEWS_URL,
+  MOVIE_CREDITS_URL,
+  TV_SERIES_CREDITS_URL
+} from '@/constants/endpoints.js'
 const { getMovieImageUrl } = useImage()
 const $toast = useToast()
-
 const user = inject(USER)
 
-// import image4 from '@/assets/images/image4.jpg'
 import ads1 from '@/assets/images/ads1.png'
 import { computed } from 'vue'
 
-const props = defineProps([
-  'src',
-  'title',
-  'rate',
-  'genres',
-  'release_date',
-  'vote_count',
-  'overview',
-  'relatedMovies',
-  'movieImages',
-  'run_time',
-  'movieKeywords',
-  'movieReview',
-  'movieCast',
-  'movieCrew',
-  'type',
-  'id'
-])
+const props = defineProps(['movieData', 'type', 'id'])
+
+const { data: relatedMovies } = useAxios(
+  `${
+    props.type === 'tv-series' ? TV_SERIES_DETAILS_URL(props.id) : MOVIE_DETAILS_URL(props.id)
+  }/recommendations?language=en-US&page=1`
+)
+
+const { data: movieImages } = useAxios(
+  `${
+    props.type === 'tv-series'
+      ? TV_SERIES_IMAGES_URL(props.id)
+      : MOVIE_IMAGES_URL(props.id)
+  }`
+)
+
+const { data: movieKeywords } = useAxios(
+  `${
+    props.type === 'tv-series'
+      ? TV_SERIES_KEYWORDS_URL(props.id)
+      : MOVIE_KEYWORDS_URL(props.id)
+  }`
+)
+
+const { data: movieReview } = useAxios(
+  `${
+    props.type === 'tv-series'
+      ? TV_SERIES_REVIEWS_URL(props.id)
+      : MOVIE_REVIEWS_URL(props.id)
+  }`
+)
+
+const {
+  data: credits
+} = useAxios(
+  `${
+    props.type === 'tv-series'
+      ? TV_SERIES_CREDITS_URL(props.id)
+      : MOVIE_CREDITS_URL(props.id)
+  }`
+)
 
 const year = computed(() => {
-  return props.release_date && new Date(props.release_date).getFullYear()
+  return props.movieData.data.release_date && new Date(props.movieData.data.release_date).getFullYear()
 })
 
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
-]
-
 const releaseDate = computed(() => {
-  const date = props.release_date && new Date(props.release_date)
+  const date = props.movieData.data.release_date && new Date(props.movieData.data.release_date)
 
-  const month = props.release_date && months[date.getMonth()]
-  return props.release_date && `${month}, ${date.getDate()}, ${date.getFullYear()}`
+  const month = props.movieData.data.release_date && months[date.getMonth()]
+  return props.movieData.data.release_date && `${month}, ${date.getDate()}, ${date.getFullYear()}`
 })
 
 const reviewDate = computed(() => {
-  const date = props.movieReview.created_at && new Date(props.movieReview.created_at)
-
-  const month = props.movieReview.created_at && months[date.getMonth()]
-  return props.movieReview.created_at && `${month}, ${date.getDate()}, ${date.getFullYear()}`
+  if (!movieReview.data) return
+  const date = new Date(movieReview.data.results[0].created_at)
+  const month = months[date.getMonth()]
+  return `${month}, ${date.getDate()}, ${date.getFullYear()}`
 })
 
 const reviewDetail = computed(() => {
-  return props.movieReview.author_details && props.movieReview.author_details.rating
+  return (
+    movieReview.data && movieReview.data.results[0].author_details.rating
+  )
 })
 
 async function addMovieToFavoriteList() {
@@ -94,14 +116,14 @@ async function addMovieToFavoriteList() {
 
 <template>
   <main class="py-10 z-20 relative">
-    <div class="container flex flex-col items-center lg:items-start lg:flex-row -mt-80 gap-10">
-      <single-movie-side-bar :src="src" />
+    <div class="container flex flex-col items-center lg:items-start lg:flex-row -mt-80 gap-10" v-if="!!movieData">
+      <single-movie-side-bar :src="getMovieImageUrl('w342', movieData.data.poster_path)" />
       <div class="basis-2/3 flex flex-col gap-8">
         <h1 class="font-extralight text-2xl">
           <span
             class="dark:text-white font-bold text-4xl overflow-hidden text-ellipsis line-clamp-1"
           >
-            {{ title }}</span
+            {{ movieData.data.title }}</span
           >
           {{ year }}
         </h1>
@@ -122,9 +144,9 @@ async function addMovieToFavoriteList() {
             <span class="star flex items-center gap-2">
               <i class="fa-fw fa-xl fa-star text-yellow fa"></i>
               <div>
-                <span class="text-white text-lg">{{ rate }}</span>
+                <span class="text-white text-lg">{{ movieData.data.vote_average }}</span>
                 <span>/10</span>
-                <p class="text-black dark:text-blue">{{ vote_count }} Reviews</p>
+                <p class="text-black dark:text-blue">{{ movieData.data.vote_count }} Reviews</p>
               </div>
             </span>
           </div>
@@ -135,7 +157,7 @@ async function addMovieToFavoriteList() {
                 v-for="index in 5"
                 :key="index"
                 class="fa-fw fa-xl fa-star fa"
-                :class="{ 'text-yellow': index <= rate / 2 }"
+                :class="{ 'text-yellow': index <= movieData.data.vote_average / 2 }"
               ></i>
             </span>
           </div>
@@ -160,7 +182,7 @@ async function addMovieToFavoriteList() {
         <div class="flex flex-col gap-10 md:flex-row md:gap-0">
           <div class="basis-3/4 md:pr-10 flex flex-col gap-10">
             <p id="overview" class="text-black dark:text-text font-light scroll-m-10">
-              {{ overview }}
+              {{ movieData.data.overview }}
             </p>
             <div id="media" class="scroll-m-10">
               <header
@@ -172,9 +194,9 @@ async function addMovieToFavoriteList() {
                   >All 5 Videos & 245 Photos <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-2" v-if="!!movieImages">
                 <single-movie-item
-                  v-for="(imageSrc, index) in movieImages"
+                  v-for="(imageSrc, index) in movieImages.data.posters.slice(0, 4)"
                   :key="index"
                   :src="getMovieImageUrl('w92', imageSrc.file_path)"
                 />
@@ -198,8 +220,8 @@ async function addMovieToFavoriteList() {
                   >Full Cast & Crew <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
-              <div class="flex flex-col gap-10">
-                <cast-item v-for="cast in movieCast" :key="cast.id" :cast="cast" />
+              <div class="flex flex-col gap-10" v-if="!!credits">
+                <cast-item v-for="cast in credits.data.cast.slice(0, 10)" :key="cast.id" :cast="cast" />
               </div>
             </div>
             <div id="reviews" class="scroll-m-10">
@@ -212,7 +234,7 @@ async function addMovieToFavoriteList() {
                   >See All 56 Reviews <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
-              <div class="flex flex-col gap-2">
+              <div class="flex flex-col gap-2" v-if="!!movieReview">
                 <span>
                   <i
                     v-for="index in 5"
@@ -226,11 +248,11 @@ async function addMovieToFavoriteList() {
                   <span
                     class="text-blue hover:text-red hover:dark:text-yellow hover:cursor-pointer font-extralight"
                   >
-                    {{ movieReview.author }}</span
+                    {{ movieReview.data.results[0].author }}</span
                   ></span
                 >
                 <p class="text-black dark:text-text font-light">
-                  {{ movieReview.content }}
+                  {{ movieReview.data.results[0].content }}
                 </p>
               </div>
             </div>
@@ -244,9 +266,9 @@ async function addMovieToFavoriteList() {
                   >VIEW ALL <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
-              <div class="movie-list flex overflow-hidden gap-4 max-[450px]:justify-center">
+              <div class="movie-list flex overflow-hidden gap-4 max-[450px]:justify-center" v-if="!!relatedMovies">
                 <related-movie-item
-                  v-for="relatedMovie in relatedMovies"
+                  v-for="relatedMovie in relatedMovies.data.results.slice(0, 4)"
                   :key="relatedMovie.id"
                   :movie="relatedMovie"
                   :type="type"
@@ -269,9 +291,9 @@ async function addMovieToFavoriteList() {
                 <span class="text-blue hover hover:cursor-pointer font-light">Stan Lee</span>
               </div>
             </div>
-            <div class="text-black dark:text-text">
+            <div class="text-black dark:text-text" v-if="!!credits">
               Stars:
-              <div v-for="star in movieCast" :key="star.id">
+              <div v-for="star in credits.data.cast.slice(0, 10)" :key="star.id">
                 <span class="text-blue hover hover:cursor-pointer font-light">{{ star.name }}</span>
                 <span>,</span>
               </div>
@@ -279,7 +301,7 @@ async function addMovieToFavoriteList() {
             <div class="text-black dark:text-text">
               Genres:
               <div>
-                <span class="" v-for="genre in genres" :key="genre.id">
+                <span class="" v-for="genre in movieData.data.genres" :key="genre.id">
                   <span class="text-blue hover hover:cursor-pointer font-light">{{
                     genre.name
                   }}</span>
@@ -293,7 +315,7 @@ async function addMovieToFavoriteList() {
             </div>
             <div class="text-black dark:text-text">
               Run Time:
-              <div class="font-light text-text">{{ `${run_time} min` }}</div>
+              <div class="font-light text-text">{{ `${movieData.data.runtime} min` }}</div>
             </div>
             <div class="text-black dark:text-text">
               MMPA Rating:
@@ -301,8 +323,8 @@ async function addMovieToFavoriteList() {
             </div>
             <div class="text-black dark:text-text">
               Plot Keywords:
-              <div class="flex flex-wrap gap-1 text-text">
-                <span v-for="keyword in movieKeywords" :key="keyword.id" class="keyword-span">{{
+              <div class="flex flex-wrap gap-1 text-text" v-if="!!movieKeywords">
+                <span v-for="keyword in movieKeywords.data.keywords" :key="keyword.id" class="keyword-span">{{
                   keyword.name
                 }}</span>
               </div>

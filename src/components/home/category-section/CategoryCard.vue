@@ -25,7 +25,7 @@ function redirectToSingleMoviePage() {
       </h6>
       <p>
         <i class="fa-fw fa-md fa-star text-[#f5b50a] fa"></i
-        ><span class="text-lg text-white">{{ vote_average }}</span> /10
+        ><span class="text-lg text-white">{{ movieData.vote_average }}</span> /10
       </p>
     </div>
   </div>
