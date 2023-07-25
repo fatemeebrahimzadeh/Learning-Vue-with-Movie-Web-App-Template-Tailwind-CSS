@@ -1,7 +1,6 @@
 <script setup>
-import CategoryMovieItem from '@/components/home/category-section/CategoryMovieItem.vue'
-import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
-import CategoryAnchorTagsList from '@/components/home/category-section/CategoryAnchorTagsList.vue'
+import CategoryCard from '@/components/home/category-section/CategoryCard.vue'
+import AnchorTagsList from '@/components/home/category-section/AnchorTagsList.vue'
 
 defineProps(['list', 'title', 'type'])
 </script>
@@ -10,20 +9,17 @@ defineProps(['list', 'title', 'type'])
   <section class="movie">
     <header class="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between mb-5 sm:items-center">
       <h2 class="text-black dark:text-white text-3xl max-[450px]:text-center">{{ title }}</h2>
-      <a class="text-sm item-hover max-[450px]:text-center"
+      <a class="text-sm item-hover max-[450px]:text-center hover:cursor-pointer"
         >VIEW ALL <i class="fa fa-chevron-right fa-sm fa-fw"></i
       ></a>
     </header>
     <section class="tabs-link">
-      <category-anchor-tags-list :type="type" />
+      <anchor-tags-list :type="type" />
       <div class="movie-list flex flex-wrap gap-4 max-[450px]:justify-center">
-        <category-movie-item
+        <category-card
           v-for="item in list"
           :key="item.id"
-          :id="item.id"
-          :name="item.name"
-          :rate="item.vote_average"
-          :src="`${API_IMAGE_BASE_URL}w185${item.poster_path}`"
+          :movieData="item"
           :type="type"
         />
       </div>

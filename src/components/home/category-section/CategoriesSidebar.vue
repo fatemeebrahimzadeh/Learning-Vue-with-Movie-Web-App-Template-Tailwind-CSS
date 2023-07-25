@@ -1,4 +1,5 @@
 <script setup>
+import ads1 from '@/assets/images/ads1.png'
 import CelebrityCard from '@/components/home/category-section/CelebrityCard.vue'
 import { POPULAR_PERSON_URL } from '@/constants/endpoints.js'
 import useAxios from '@/composable/useAxios.js'

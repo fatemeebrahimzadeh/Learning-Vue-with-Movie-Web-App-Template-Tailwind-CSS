@@ -5,10 +5,8 @@ export const ACCOUNT_URL = '/account'
 export const POPULAR_MOVIES_URL = '/movie/popular'
 export const POPULAR_PERSON_URL = '/trending/person/day'
 export const NOW_PLAYING_MOVIES_URL = '/movie/now_playing'
-export const TV_SHOWS_URL =
-  '/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc'
-export const MOVIES_URL =
-  '/discover/movie?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc'
+export const TV_SHOWS_URL = '/discover/tv'
+export const MOVIES_URL = '/discover/movie'
 export const MOVIE_DETAILS_URL = (id) => `/movie/${id}`
 export const TV_SERIES_DETAILS_URL = (id) => `/tv/${id}`
 export const MOVIE_IMAGES_URL = (id) => `/movie/${id}/images`
