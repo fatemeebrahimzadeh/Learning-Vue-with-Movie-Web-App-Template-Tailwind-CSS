@@ -6,17 +6,24 @@ import {
 } from '@/constants/endpoints'
 import { Axios } from '@/utils/axios.js'
 import { LOGIN, USER } from '@/constants/provide-keys.js'
-import { computed } from 'vue'
+import { computed, reactive } from 'vue'
 const USER_ID = 'user_id'
 
 import { useToast } from 'vue-toast-notification'
 const $toast = useToast()
 
 export default function useAuth(app) {
+  const userData = reactive({
+    value: JSON.parse(sessionStorage.getItem(USER_ID) || "null"),
+  });
+  
   const user = computed({
-    get: () => JSON.parse(sessionStorage.getItem(USER_ID) || 'null'),
-    set: (value) => sessionStorage.setItem(USER_ID, JSON.stringify(value))
-  })
+    get: () => userData.value,
+    set: (value) => {
+      sessionStorage.setItem(USER_ID, JSON.stringify(value));
+      userData.value = JSON.parse(JSON.stringify(value));
+    },
+  });
 
   async function createRequestToken() {
     try {
@@ -84,6 +91,7 @@ export default function useAuth(app) {
     await createSession(requestToken)
 
     user.value = await getAccountData()
+    console.log(user.value);
   }
 
   app.config.globalProperties.$router.beforeEach((to, from, next) => {

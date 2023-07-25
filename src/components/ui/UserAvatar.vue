@@ -7,9 +7,14 @@ import { RouterLink } from 'vue-router'
 
 const user = inject(USER)
 
-const avatar = computed(
-  () => user.value.avatar.tmdb && getMovieImageUrl('w92', user.value.avatar.tmdb.avatar_path)
-)
+const avatar = computed(() => {
+  return (
+    user.value &&
+    user.value.avatar &&
+    user.value.avatar.tmdb &&
+    getMovieImageUrl('w92', user.value.avatar.tmdb.avatar_path)
+  )
+})
 </script>
 
 <template>

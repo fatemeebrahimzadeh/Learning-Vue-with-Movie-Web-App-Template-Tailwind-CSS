@@ -7,5 +7,5 @@ import 'vue-toast-notification/dist/theme-sugar.css'
 
 const app = createApp(App)
 app.use(router)
-app.mount('#app')
 useAuth(app)
+app.mount('#app')

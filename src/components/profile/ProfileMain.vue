@@ -10,6 +10,7 @@ const user = inject(USER)
 
 function logoutRequest() {
   sessionStorage.clear()
+  user.value = null
   router.push({ path: '/' })
   $toast.success('logged out!')
 }
