@@ -4,7 +4,7 @@ import LoadingSpinner from '@/components/ui/spinner/LoadingSpinner.vue'
 import { provide, ref } from 'vue'
 import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
 
-const isShowLoading = ref(true)
+const isShowLoading = ref(false)
 
 function updateLoadingVisibility(loadingState = false) {
   isShowLoading.value = loadingState
