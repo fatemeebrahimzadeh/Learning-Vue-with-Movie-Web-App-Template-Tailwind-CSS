@@ -5,7 +5,7 @@ import UnitedStates from '@/assets/svgs/flags/UnitedStates.vue'
 import Iran from '@/assets/svgs/flags/Iran.vue'
 import UserAvatar from '@/components/ui/UserAvatar.vue'
 import SignupButton from '@/components/ui/SignupButton.vue'
-import { inject, computed } from 'vue'
+import { inject, computed, ref } from 'vue'
 import { USER } from '@/constants/provide-keys.js'
 import { useRouter, RouterLink } from 'vue-router'
 
@@ -20,6 +20,12 @@ function redirectToFavoriteMoviesPage() {
     path: '/movie-list'
   })
 }
+
+const isDropDownMenuVisibe = ref(false)
+
+function togglerNavbarDropDown() {
+  isDropDownMenuVisibe.value = !isDropDownMenuVisibe.value
+}
 </script>
 
 <template>
@@ -28,12 +34,17 @@ function redirectToFavoriteMoviesPage() {
       <a>
         <img class="!max-w-[100px] sm:!max-w-[119px]" :src="logo" alt="logo" />
       </a>
-      <button id="navbar-toggler" class="inline-flex items-center p-2 ml-3 text-sm lg:hidden">
+      <button
+        @click="togglerNavbarDropDown"
+        id="navbar-toggler"
+        class="inline-flex items-center p-2 ml-3 text-sm lg:hidden"
+      >
         <span class="sr-only">Open main menu</span>
         <mobile-navbar-icon className="w-6 h-6" />
       </button>
       <div
-        class="hidden rounded-lg w-full z-20 bg-light-secondary dark:bg-dark-secondary absolute top-[112px] sm:top-[122px] left-0 lg:static lg:block lg:w-auto lg:bg-transparent lg:dark:bg-transparent"
+        class="rounded-lg w-full z-20 bg-light-secondary dark:bg-dark-secondary absolute top-[112px] sm:top-[122px] left-0 lg:static lg:block lg:w-auto lg:bg-transparent lg:dark:bg-transparent"
+        :class="{ hidden: !isDropDownMenuVisibe }"
         id="navbar-dropdown"
       >
         <ul class="flex flex-col items-center p-4 lg:p-0 lg:flex-row lg:space-x-8 lg:mt-0">
