@@ -23,24 +23,14 @@ function logoutRequest() {
       >
         <h1 class="hidden text-black text-2xl font-dosis">PROFILE</h1>
 
-        <ul class="flex flex-row justify-around w-full">
-          <li class="single-movie-tab hidden sm:block">
-            <a> FAVORITE MOVIES </a>
-          </li>
-          <li class="single-movie-tab">
-            <div
-              class="w-28 h-28 rounded-full bg-white dark:bg-dark-triority flex justify-center items-center -mt-14"
-            >
-              <label for="fileInput" class="cursor-pointer">
-                <i class="fa fa-fw fa-md fa-camera"></i>
-              </label>
-              <input id="fileInput" type="file" class="sr-only" />
-            </div>
-          </li>
-          <li class="single-movie-tab hidden sm:block">
-            <a>WATCH LIST</a>
-          </li>
-        </ul>
+        <div
+          class="w-28 h-28 rounded-full bg-white dark:bg-dark-triority flex justify-center items-center -mt-14"
+        >
+          <label for="fileInput" class="cursor-pointer">
+            <i class="fa fa-fw fa-md fa-camera"></i>
+          </label>
+          <input id="fileInput" type="file" class="sr-only" />
+        </div>
 
         <form class="w-full p-5">
           <label for="username">USERNAME:</label>
