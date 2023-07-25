@@ -1,4 +1,5 @@
 <script setup>
+import ads1 from '@/assets/images/ads1.png'
 import SingleMovieSideBar from '@/components/single-movie/SingleMovieSideBar.vue'
 import RelatedMovieItem from '@/components/single-movie/RelatedMovieItem.vue'
 import SingleMovieItem from '@/components/single-movie/SingleMovieItem.vue'
@@ -6,7 +7,7 @@ import CastItem from '@/components/single-movie/CastItem.vue'
 import { Axios } from '@/utils/axios.js'
 import useAxios from '@/composable/useAxios.js'
 import { USER } from '@/constants/provide-keys.js'
-import { inject, computed } from 'vue'
+import { inject, computed, watch } from 'vue'
 import { useToast } from 'vue-toast-notification'
 import { useImage } from '@/composable/useImage.js'
 import { months } from '@/constants/months.js'
@@ -30,30 +31,23 @@ const { getMovieImageUrl } = useImage()
 const $toast = useToast()
 const user = inject(USER)
 
-import ads1 from '@/assets/images/ads1.png'
-import { onBeforeRouteUpdate } from 'vue-router'
-
 const props = defineProps(['movieData', 'type', 'id'])
 
-const { data: relatedMovies } = useAxios(
+const { data: relatedMovies, dofetch: getRelatedMovies } = useAxios(
   `${
     props.type === 'tv-series' ? TV_SERIES_DETAILS_URL(props.id) : MOVIE_DETAILS_URL(props.id)
   }/recommendations?language=en-US&page=1`
 )
-
-const { data: movieImages } = useAxios(
+const { data: movieImages, dofetch: getMovieImages } = useAxios(
   `${props.type === 'tv-series' ? TV_SERIES_IMAGES_URL(props.id) : MOVIE_IMAGES_URL(props.id)}`
 )
-
-const { data: movieKeywords } = useAxios(
+const { data: movieKeywords, dofetch: getMovieKeywords } = useAxios(
   `${props.type === 'tv-series' ? TV_SERIES_KEYWORDS_URL(props.id) : MOVIE_KEYWORDS_URL(props.id)}`
 )
-
-const { data: movieReview } = useAxios(
+const { data: movieReview, dofetch: getMovieReview } = useAxios(
   `${props.type === 'tv-series' ? TV_SERIES_REVIEWS_URL(props.id) : MOVIE_REVIEWS_URL(props.id)}`
 )
-
-const { data: credits } = useAxios(
+const { data: credits, dofetch: getCredits } = useAxios(
   `${props.type === 'tv-series' ? TV_SERIES_CREDITS_URL(props.id) : MOVIE_CREDITS_URL(props.id)}`
 )
 
@@ -85,12 +79,6 @@ const { data: movieState, dofetch: getMovieState } = useAxios(
   `${props.type === 'tv-series' ? TV_SERIES_STATE_URL(props.id) : MOVIE_STATE_URL(props.id)}`
 )
 
-onBeforeRouteUpdate(() => {
-  getMovieState(
-    `${props.type === 'tv-series' ? TV_SERIES_STATE_URL(props.id) : MOVIE_STATE_URL(props.id)}`
-  )
-})
-
 const { updateLoadingVisibility } = inject(LOADING_VISIBILITY)
 
 async function addMovieToFavoriteList() {
@@ -115,6 +103,38 @@ async function addMovieToFavoriteList() {
     }
   }
 }
+
+watch(
+  () => props.id,
+  async () => {
+    getRelatedMovies(
+      `${
+        props.type === 'tv-series' ? TV_SERIES_DETAILS_URL(props.id) : MOVIE_DETAILS_URL(props.id)
+      }/recommendations?language=en-US&page=1`
+    )
+    getMovieImages(
+      `${props.type === 'tv-series' ? TV_SERIES_IMAGES_URL(props.id) : MOVIE_IMAGES_URL(props.id)}`
+    )
+    getMovieKeywords(
+      `${
+        props.type === 'tv-series' ? TV_SERIES_KEYWORDS_URL(props.id) : MOVIE_KEYWORDS_URL(props.id)
+      }`
+    )
+    getMovieReview(
+      `${
+        props.type === 'tv-series' ? TV_SERIES_REVIEWS_URL(props.id) : MOVIE_REVIEWS_URL(props.id)
+      }`
+    )
+    getCredits(
+      `${
+        props.type === 'tv-series' ? TV_SERIES_CREDITS_URL(props.id) : MOVIE_CREDITS_URL(props.id)
+      }`
+    )
+    getMovieState(
+      `${props.type === 'tv-series' ? TV_SERIES_STATE_URL(props.id) : MOVIE_STATE_URL(props.id)}`
+    )
+  }
+)
 </script>
 
 <template>
