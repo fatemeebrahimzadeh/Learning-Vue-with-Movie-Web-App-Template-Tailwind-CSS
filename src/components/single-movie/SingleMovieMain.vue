@@ -5,10 +5,11 @@ import SingleMovieItem from '@/components/single-movie/SingleMovieItem.vue'
 import CastItem from '@/components/single-movie/CastItem.vue'
 import { Axios } from '@/utils/axios.js'
 import { USER } from '@/constants/provide-keys.js'
-import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
 import { ADD_MOVIE_TO_FAVORITE_LIST } from '@/constants/endpoints.js'
 import { inject } from 'vue'
 import { useToast } from 'vue-toast-notification'
+import { useImage } from '@/composable/useImage.js'
+const { getMovieImageUrl } = useImage()
 const $toast = useToast()
 
 const user = inject(USER)
@@ -175,7 +176,7 @@ async function addMovieToFavoriteList() {
                 <single-movie-item
                   v-for="(imageSrc, index) in movieImages"
                   :key="index"
-                  :src="`${API_IMAGE_BASE_URL}w92${imageSrc.file_path}`"
+                  :src="getMovieImageUrl('w92', imageSrc.file_path)"
                 />
                 <!-- <div class="movie-item relative group">
                   <img class="hover:cursor-pointer" :src="image4" alt="image4" />

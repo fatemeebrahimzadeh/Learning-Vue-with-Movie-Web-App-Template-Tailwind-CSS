@@ -1,6 +1,6 @@
 <script setup>
-import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
-
+import { useImage } from '@/composable/useImage.js'
+const { getMovieImageUrl } = useImage()
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const props = defineProps(['movie', 'type'])
@@ -16,10 +16,7 @@ function redirectToSingleMoviePage() {
 <template>
   <div class="movie-item relative group">
     <a @click="redirectToSingleMoviePage" class="hover:cursor-pointer">
-      <img
-        class="flex-shrink-0 object-cover"
-        :src="`${API_IMAGE_BASE_URL}w342${movie.poster_path}`"
-      />
+      <img class="flex-shrink-0 object-cover" :src="getMovieImageUrl('w342', movie.poster_path)" />
     </a>
   </div>
 </template>
