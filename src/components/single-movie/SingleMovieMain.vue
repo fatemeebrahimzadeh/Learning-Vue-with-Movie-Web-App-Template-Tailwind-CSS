@@ -31,6 +31,7 @@ const $toast = useToast()
 const user = inject(USER)
 
 import ads1 from '@/assets/images/ads1.png'
+import { onBeforeRouteUpdate } from 'vue-router'
 
 const props = defineProps(['movieData', 'type', 'id'])
 
@@ -83,6 +84,12 @@ const reviewDetail = computed(() => {
 const { data: movieState, dofetch: getMovieState } = useAxios(
   `${props.type === 'tv-series' ? TV_SERIES_STATE_URL(props.id) : MOVIE_STATE_URL(props.id)}`
 )
+
+onBeforeRouteUpdate(() => {
+  getMovieState(
+    `${props.type === 'tv-series' ? TV_SERIES_STATE_URL(props.id) : MOVIE_STATE_URL(props.id)}`
+  )
+})
 
 const { updateLoadingVisibility } = inject(LOADING_VISIBILITY)
 

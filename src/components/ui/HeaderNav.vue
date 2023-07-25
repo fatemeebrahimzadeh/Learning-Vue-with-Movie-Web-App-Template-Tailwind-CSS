@@ -17,7 +17,8 @@ const currentComponent = computed(() => (!user.value ? SignupButton : UserAvatar
 
 function redirectToFavoriteMoviesPage() {
   router.push({
-    path: '/movie-list'
+    path: '/movie-list',
+    query: { type: 'favorite-movies' }
   })
 }
 

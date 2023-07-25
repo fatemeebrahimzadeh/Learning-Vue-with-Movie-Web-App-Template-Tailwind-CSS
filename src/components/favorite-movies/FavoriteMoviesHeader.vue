@@ -1,6 +1,8 @@
 <script setup>
 import HeaderNav from '@/components/ui/HeaderNav.vue'
 import HeaderSearchBar from '@/components/ui/HeaderSearchBar.vue'
+
+defineProps(['title'])
 </script>
 
 <template>
@@ -10,10 +12,10 @@ import HeaderSearchBar from '@/components/ui/HeaderSearchBar.vue'
         <header-nav />
         <header-search-bar />
         <div class="flex flex-col items-center justify-center gap-5 h-full">
-          <h1 class="text-2xl sm:text-4xl text-black dark:text-white">FAVORITE MOVIES</h1>
+          <h1 class="text-2xl sm:text-4xl text-black dark:text-white">{{ title }}</h1>
           <ul class="flex breadcrumb">
-            <li class="text-black dark:text-blue"><a>HOME</a></li>
-            <li class="before:content-chevron-right">FAVORITE MOVIES</li>
+            <li class="text-black dark:text-blue"><router-link to="/">HOME</router-link></li>
+            <li class="before:content-chevron-right">{{ title }}</li>
           </ul>
         </div>
       </div>

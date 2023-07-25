@@ -21,3 +21,5 @@ export const ADD_MOVIE_TO_FAVORITE_LIST = (account_id) => `/account/${account_id
 export const GET_FAVORITE_MOVIE_LIST = (account_id) => `/account/${account_id}/favorite/movies`
 export const MOVIE_STATE_URL = (id) => `/movie/${id}/account_states`
 export const TV_SERIES_STATE_URL = (id) => `/tv/${id}/account_states`
+export const MOVIE_LIST_BY_CATEGORY_URL = (category) => `/movie/${category}`
+export const TV_SERIES_BY_CATEGORY_URL = (category) => `/tv/${category}`

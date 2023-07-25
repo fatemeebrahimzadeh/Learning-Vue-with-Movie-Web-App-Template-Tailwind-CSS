@@ -17,7 +17,7 @@ const computedGenres = computed(() => {
 function redirectToSingleMoviePage() {
   router.push({
     path: '/single-movie',
-    query: { movieId: props.movieData.id }
+    query: { movieId: props.movieData.id, type: 'movies' }
   })
 }
 </script>

@@ -1,6 +1,6 @@
 <script setup>
 import CategoryCard from '@/components/home/category-section/CategoryCard.vue'
-import AnchorTagsList from '@/components/home/category-section/AnchorTagsList.vue'
+import TabList from '@/components/home/category-section/TabList.vue'
 
 defineProps(['list', 'title', 'type'])
 </script>
@@ -14,7 +14,7 @@ defineProps(['list', 'title', 'type'])
       ></a>
     </header>
     <section class="tabs-link">
-      <anchor-tags-list :type="type" />
+      <tab-list :type="type" />
       <div class="movie-list flex flex-wrap gap-4 max-[450px]:justify-center">
         <category-card
           v-for="item in list"

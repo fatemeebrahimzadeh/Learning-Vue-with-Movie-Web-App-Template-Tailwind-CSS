@@ -16,6 +16,7 @@ const useAxios = (url, options = {}) => {
       const { method = 'get', data: requestData, ...config } = options
       const response = await Axios[method](url, requestData, config)
       data.value = response
+      console.log(response.data);
     } catch (err) {
       error.value = err
     } finally {
