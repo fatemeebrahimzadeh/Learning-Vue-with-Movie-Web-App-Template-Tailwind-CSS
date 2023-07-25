@@ -10,7 +10,7 @@ const useAxios = (url, options = {}) => {
   const data = ref(null)
   const error = ref(null)
 
-  const fetchData = async () => {
+  const fetchData = async (url) => {
     updateLoadingVisibility(true)
     try {
       const { method = 'get', data: requestData, ...config } = options
@@ -24,7 +24,7 @@ const useAxios = (url, options = {}) => {
   }
 
   onMounted(() => {
-    fetchData()
+    fetchData(url)
   })
 
   return {
