@@ -5,7 +5,8 @@ const basicConfigs = {
   baseURL: `${API_BASE_URL}/${API_VERSION}`,
   headers: {
     Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`
-  }
+  },
+  timeout: 5000
 }
 
 export class AxiosClass {
