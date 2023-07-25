@@ -5,10 +5,9 @@ import UnitedStates from '@/assets/svgs/flags/UnitedStates.vue'
 import Iran from '@/assets/svgs/flags/Iran.vue'
 import UserAvatar from '@/components/ui/UserAvatar.vue'
 import SignupButton from '@/components/ui/SignupButton.vue'
-import { RouterLink } from 'vue-router'
 import { inject, computed } from 'vue'
 import { USER } from '@/constants/provide-keys.js'
-import { useRouter } from 'vue-router'
+import { useRouter, RouterLink } from 'vue-router'
 
 const router = useRouter()
 

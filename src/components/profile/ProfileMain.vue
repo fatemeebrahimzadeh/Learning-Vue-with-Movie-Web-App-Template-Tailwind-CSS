@@ -1,3 +1,20 @@
+<script setup>
+import { inject } from 'vue'
+import { USER } from '@/constants/provide-keys.js'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toast-notification'
+const router = useRouter()
+const $toast = useToast()
+
+const user = inject(USER)
+
+function logoutRequest() {
+  sessionStorage.clear()
+  router.push({ path: '/' })
+  $toast.success('logged out!')
+}
+</script>
+
 <template>
   <main class="py-10">
     <div class="container flex justify-center items-center -mt-52 lg:-mt-48">
@@ -30,7 +47,7 @@
           <input
             name="username"
             type="text"
-            value="fatemeebrahimzadeh"
+            :value="user.username"
             class="profile-input"
             required
           />
@@ -67,7 +84,12 @@
           <input name="password" type="password" class="profile-input" required />
           <label for="retype-password">RE-TYPE PASSWORD:</label>
           <input name="retype-password" type="password" class="profile-input" required />
-          <button class="w-full bg-red px-5 py-3 text-white" type="submit">EDIT PROFILE</button>
+          <button class="w-full bg-red px-5 py-3 text-white mb-5" type="submit">
+            EDIT PROFILE
+          </button>
+          <button type="button" class="w-full bg-red px-5 py-3 text-white" @click="logoutRequest">
+            LOG OUT
+          </button>
         </form>
       </section>
     </div>

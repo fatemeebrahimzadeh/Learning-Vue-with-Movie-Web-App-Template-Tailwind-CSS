@@ -1,9 +1,12 @@
 <script setup>
-import author from '@/assets/images/author.png'
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <a>
-    <img class="m-2" :src="author" alt="user" />
-  </a>
+  <router-link
+    to="/profile"
+    class="w-14 h-14 bg-white dark:bg-dark-triority flex justify-center items-center rounded-full"
+  >
+    <i class="fa fa-fw fa-md fa-camera"></i>
+  </router-link>
 </template>
