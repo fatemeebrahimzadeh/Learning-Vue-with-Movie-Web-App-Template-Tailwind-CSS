@@ -6,10 +6,11 @@ import CastItem from '@/components/single-movie/CastItem.vue'
 import { Axios } from '@/utils/axios.js'
 import useAxios from '@/composable/useAxios.js'
 import { USER } from '@/constants/provide-keys.js'
-import { inject } from 'vue'
+import { inject, computed } from 'vue'
 import { useToast } from 'vue-toast-notification'
 import { useImage } from '@/composable/useImage.js'
 import { months } from '@/constants/months.js'
+import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
 import {
   ADD_MOVIE_TO_FAVORITE_LIST,
   MOVIE_DETAILS_URL,
@@ -21,14 +22,15 @@ import {
   TV_SERIES_REVIEWS_URL,
   MOVIE_REVIEWS_URL,
   MOVIE_CREDITS_URL,
-  TV_SERIES_CREDITS_URL
+  TV_SERIES_CREDITS_URL,
+  MOVIE_STATE_URL,
+  TV_SERIES_STATE_URL
 } from '@/constants/endpoints.js'
 const { getMovieImageUrl } = useImage()
 const $toast = useToast()
 const user = inject(USER)
 
 import ads1 from '@/assets/images/ads1.png'
-import { computed } from 'vue'
 
 const props = defineProps(['movieData', 'type', 'id'])
 
@@ -39,41 +41,25 @@ const { data: relatedMovies } = useAxios(
 )
 
 const { data: movieImages } = useAxios(
-  `${
-    props.type === 'tv-series'
-      ? TV_SERIES_IMAGES_URL(props.id)
-      : MOVIE_IMAGES_URL(props.id)
-  }`
+  `${props.type === 'tv-series' ? TV_SERIES_IMAGES_URL(props.id) : MOVIE_IMAGES_URL(props.id)}`
 )
 
 const { data: movieKeywords } = useAxios(
-  `${
-    props.type === 'tv-series'
-      ? TV_SERIES_KEYWORDS_URL(props.id)
-      : MOVIE_KEYWORDS_URL(props.id)
-  }`
+  `${props.type === 'tv-series' ? TV_SERIES_KEYWORDS_URL(props.id) : MOVIE_KEYWORDS_URL(props.id)}`
 )
 
 const { data: movieReview } = useAxios(
-  `${
-    props.type === 'tv-series'
-      ? TV_SERIES_REVIEWS_URL(props.id)
-      : MOVIE_REVIEWS_URL(props.id)
-  }`
+  `${props.type === 'tv-series' ? TV_SERIES_REVIEWS_URL(props.id) : MOVIE_REVIEWS_URL(props.id)}`
 )
 
-const {
-  data: credits
-} = useAxios(
-  `${
-    props.type === 'tv-series'
-      ? TV_SERIES_CREDITS_URL(props.id)
-      : MOVIE_CREDITS_URL(props.id)
-  }`
+const { data: credits } = useAxios(
+  `${props.type === 'tv-series' ? TV_SERIES_CREDITS_URL(props.id) : MOVIE_CREDITS_URL(props.id)}`
 )
 
 const year = computed(() => {
-  return props.movieData.data.release_date && new Date(props.movieData.data.release_date).getFullYear()
+  return (
+    props.movieData.data.release_date && new Date(props.movieData.data.release_date).getFullYear()
+  )
 })
 
 const releaseDate = computed(() => {
@@ -91,24 +77,34 @@ const reviewDate = computed(() => {
 })
 
 const reviewDetail = computed(() => {
-  return (
-    movieReview.data && movieReview.data.results[0].author_details.rating
-  )
+  return movieReview.data && movieReview.data.results[0].author_details.rating
 })
+
+const { data: movieState, dofetch: getMovieState } = useAxios(
+  `${props.type === 'tv-series' ? TV_SERIES_STATE_URL(props.id) : MOVIE_STATE_URL(props.id)}`
+)
+
+const { updateLoadingVisibility } = inject(LOADING_VISIBILITY)
 
 async function addMovieToFavoriteList() {
   if (!user.value) {
     $toast.error('Please log in first!')
   } else {
     try {
+      updateLoadingVisibility(true)
       await Axios.post(ADD_MOVIE_TO_FAVORITE_LIST(user), {
         media_type: 'movie',
         media_id: props.id,
-        favorite: true
+        favorite: !movieState.value.data.favorite
       })
+      getMovieState(
+        `${props.type === 'tv-series' ? TV_SERIES_STATE_URL(props.id) : MOVIE_STATE_URL(props.id)}`
+      )
       $toast.success('Success!')
     } catch (error) {
       $toast.error('Somthing wrong happened!')
+    } finally {
+      updateLoadingVisibility(false)
     }
   }
 }
@@ -116,7 +112,10 @@ async function addMovieToFavoriteList() {
 
 <template>
   <main class="py-10 z-20 relative">
-    <div class="container flex flex-col items-center lg:items-start lg:flex-row -mt-80 gap-10" v-if="!!movieData">
+    <div
+      class="container flex flex-col items-center lg:items-start lg:flex-row -mt-80 gap-10"
+      v-if="!!movieData"
+    >
       <single-movie-side-bar :src="getMovieImageUrl('w342', movieData.data.poster_path)" />
       <div class="basis-2/3 flex flex-col gap-8">
         <h1 class="font-extralight text-2xl">
@@ -129,7 +128,10 @@ async function addMovieToFavoriteList() {
         </h1>
         <div class="flex flex-col sm:flex-row gap-5 text-red">
           <a @click="addMovieToFavoriteList" class="flex items-center gap-1 hover:cursor-pointer">
-            <span class="circle-border before:content-heart"></span>
+            <span
+              class="circle-border before:content-heart"
+              :class="{ 'bg-white': movieState.data.favorite }"
+            ></span>
             <span>ADD TO FAVORITE</span>
           </a>
           <a class="flex items-center gap-1">
@@ -221,7 +223,11 @@ async function addMovieToFavoriteList() {
                 ></a>
               </header>
               <div class="flex flex-col gap-10" v-if="!!credits">
-                <cast-item v-for="cast in credits.data.cast.slice(0, 10)" :key="cast.id" :cast="cast" />
+                <cast-item
+                  v-for="cast in credits.data.cast.slice(0, 10)"
+                  :key="cast.id"
+                  :cast="cast"
+                />
               </div>
             </div>
             <div id="reviews" class="scroll-m-10">
@@ -266,7 +272,10 @@ async function addMovieToFavoriteList() {
                   >VIEW ALL <i class="fa fa-chevron-right fa-sm fa-fw"></i
                 ></a>
               </header>
-              <div class="movie-list flex overflow-hidden gap-4 max-[450px]:justify-center" v-if="!!relatedMovies">
+              <div
+                class="movie-list flex overflow-hidden gap-4 max-[450px]:justify-center"
+                v-if="!!relatedMovies"
+              >
                 <related-movie-item
                   v-for="relatedMovie in relatedMovies.data.results.slice(0, 4)"
                   :key="relatedMovie.id"
@@ -324,9 +333,12 @@ async function addMovieToFavoriteList() {
             <div class="text-black dark:text-text">
               Plot Keywords:
               <div class="flex flex-wrap gap-1 text-text" v-if="!!movieKeywords">
-                <span v-for="keyword in movieKeywords.data.keywords" :key="keyword.id" class="keyword-span">{{
-                  keyword.name
-                }}</span>
+                <span
+                  v-for="keyword in movieKeywords.data.keywords"
+                  :key="keyword.id"
+                  class="keyword-span"
+                  >{{ keyword.name }}</span
+                >
               </div>
             </div>
             <img :src="ads1" alt="ads" />
