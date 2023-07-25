@@ -1,25 +1,8 @@
 <script setup>
-import { API_IMAGE_BASE_URL } from '@/constants/api-constants.js'
-import CategoriesSidebarCelebrity from '@/components/home/category-section/CategoriesSidebarCelebrity.vue'
-import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
+import CelebrityCard from '@/components/home/category-section/CelebrityCard.vue'
 import { POPULAR_PERSON_URL } from '@/constants/endpoints.js'
-import { Axios } from '@/utils/axios.js'
-import { inject, onMounted, ref } from 'vue'
-let celebrities = ref([])
-
-const { updateLoadingVisibility } = inject(LOADING_VISIBILITY)
-updateLoadingVisibility(true)
-
-onMounted(async () => {
-  try {
-    const response = await Axios.get(POPULAR_PERSON_URL)
-    celebrities.value = response.data.results.slice(0, 4)
-  } catch (error) {
-    console.error(error)
-  } finally {
-    updateLoadingVisibility(false)
-  }
-})
+import useAxios from '@/composable/useAxios.js'
+const { data: response } = useAxios(POPULAR_PERSON_URL)
 </script>
 
 <template>
@@ -29,13 +12,11 @@ onMounted(async () => {
       SPOTLIGHT CELEBRITIES
       <hr class="h-1" />
     </h3>
-    <div class="celebrities">
-      <categories-sidebar-celebrity
-        v-for="celebrity in celebrities"
+    <div class="celebrities" v-if="!!response">
+      <celebrity-card
+        v-for="celebrity in response.data.results.slice(0, 4)"
         :key="celebrity.id"
-        :name="celebrity.name"
-        :src="`${API_IMAGE_BASE_URL}w45${celebrity.profile_path}`"
-        :job="celebrity.known_for_department"
+        :celebrityData="celebrity"
       />
     </div>
     <a class="item-hover hover:cursor-pointer"
