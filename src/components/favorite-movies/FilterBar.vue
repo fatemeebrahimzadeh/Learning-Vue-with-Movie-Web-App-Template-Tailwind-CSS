@@ -7,6 +7,9 @@ const filteringOptions = [
   { id: 5, title: 'Release date Descending' },
   { id: 6, title: 'Release date Ascending' }
 ]
+
+defineProps(['listMode'])
+defineEmits(['toggleListMode'])
 </script>
 
 <template>
@@ -32,14 +35,18 @@ const filteringOptions = [
       </option>
     </select>
     <button
+      @click.prevent="$emit('toggleListMode', 'list')"
       id="movie-list-btn"
       class="block text-center sm:basis-1/12 hover:text-red hover:dark:text-yellow sm:flex sm:items-center sm:justify-center sm:border-r-[1px] sm:border-light-secondary sm:dark:border-dark-100 w-full h-full"
+      :class="{ 'text-red dark:text-yellow': listMode === 'list' }"
     >
       <i class="fa fa-fw fa-sm fa-list"></i>
     </button>
     <button
+      @click.prevent="$emit('toggleListMode', 'grid')"
       id="movie-grid-btn"
       class="block text-center sm:basis-1/12 hover:text-red dark:hover:text-yellow sm:flex sm:items-center sm:justify-center w-full h-full"
+      :class="{ 'text-red dark:text-yellow': listMode === 'grid' }"
     >
       <i class="fa fa-fw fa-sm fa-th"></i>
     </button>

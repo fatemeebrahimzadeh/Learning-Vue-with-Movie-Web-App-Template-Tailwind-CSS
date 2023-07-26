@@ -8,15 +8,18 @@ import PaginationBar from '@/components/favorite-movies/PaginationBar.vue'
 import { ref } from 'vue'
 
 defineProps(['movieList'])
-
 const listMode = ref('grid')
+
+function toggleListMode(mode) {
+  listMode.value = mode
+}
 </script>
 
 <template>
   <main class="py-10">
     <div class="container flex flex-col lg:flex-row gap-10">
       <div class="lg:basis-2/3" v-if="!!movieList">
-        <filter-bar />
+        <filter-bar @toggleListMode="toggleListMode" :listMode="listMode" />
         <section
           id="movie-list"
           class="movie-list gap-5 my-10"
