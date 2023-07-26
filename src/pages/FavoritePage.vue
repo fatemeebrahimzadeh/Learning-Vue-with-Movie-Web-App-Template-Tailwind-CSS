@@ -28,9 +28,10 @@ const url = computed(() => {
 })
 
 const { data: movieList } = useAxios(url.value)
+const count = computed(() => movieList && movieList.value && movieList.value.data.total_results)
 </script>
 
 <template>
   <favorite-movies-header :title="title" />
-  <favorite-movies-main :movieList="movieList" :type="pageType" />
+  <favorite-movies-main :movieList="movieList" :type="pageType" :count="count"/>
 </template>

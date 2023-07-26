@@ -8,7 +8,7 @@ const filteringOptions = [
   { id: 6, title: 'Release date Ascending' }
 ]
 
-defineProps(['listMode'])
+defineProps(['listMode','count'])
 defineEmits(['toggleListMode'])
 </script>
 

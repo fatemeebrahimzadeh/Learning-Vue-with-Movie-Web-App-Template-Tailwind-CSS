@@ -7,7 +7,7 @@ import MovieGridItemV2 from '@/components/favorite-movies/MovieGridItemV2.vue'
 import PaginationBar from '@/components/favorite-movies/PaginationBar.vue'
 import { ref } from 'vue'
 
-defineProps(['movieList'])
+defineProps(['movieList','count'])
 const listMode = ref('grid')
 
 function toggleListMode(mode) {
@@ -19,7 +19,7 @@ function toggleListMode(mode) {
   <main class="py-10">
     <div class="container flex flex-col lg:flex-row gap-10">
       <div class="lg:basis-2/3" v-if="!!movieList">
-        <filter-bar @toggleListMode="toggleListMode" :listMode="listMode" />
+        <filter-bar @toggleListMode="toggleListMode" :listMode="listMode" :count="count"/>
         <section
           id="movie-list"
           class="movie-list gap-5 my-10"
