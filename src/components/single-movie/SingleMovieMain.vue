@@ -175,7 +175,7 @@ watch(
           <a @click="addMovieToFavoriteList" class="flex items-center gap-1 hover:cursor-pointer">
             <span
               class="circle-border before:content-heart"
-              :class="{ 'bg-white': movieState.data.favorite }"
+              :class="{ 'bg-white': !!user && !!user.value ? movieState.data.favorite : false }"
             ></span>
             <span>ADD TO FAVORITE</span>
           </a>
@@ -198,7 +198,6 @@ watch(
             </span>
           </div>
           <div class="sm:basis-3/4 flex items-center text-lg gap-2 p-2">
-            Rate This Movie:
             <span>
               <i
                 v-for="index in 5"

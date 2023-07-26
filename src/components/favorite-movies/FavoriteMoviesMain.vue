@@ -7,26 +7,28 @@ import MovieGridItemV2 from '@/components/favorite-movies/MovieGridItemV2.vue'
 import PaginationBar from '@/components/favorite-movies/PaginationBar.vue'
 import { ref } from 'vue'
 
-defineProps(['movieList','count'])
+defineProps(['movieList', 'count'])
 const listMode = ref('grid')
 
 function toggleListMode(mode) {
   listMode.value = mode
 }
+
+const pageCount = ref('5')
 </script>
 
 <template>
   <main class="py-10">
     <div class="container flex flex-col lg:flex-row gap-10">
       <div class="lg:basis-2/3" v-if="!!movieList">
-        <filter-bar @toggleListMode="toggleListMode" :listMode="listMode" :count="count"/>
+        <filter-bar @toggleListMode="toggleListMode" :listMode="listMode" :count="count" />
         <section
           id="movie-list"
           class="movie-list gap-5 my-10"
           :class="{ hidden: listMode === 'grid', grid: listMode !== 'grid' }"
         >
           <movie-list-card
-            v-for="movie in movieList.data.results.slice(0, 10)"
+            v-for="movie in movieList.data.results.slice(0, pageCount)"
             :key="movie.id"
             :movieData="movie"
             :id="movie.id"
@@ -50,13 +52,13 @@ function toggleListMode(mode) {
             :id="movie.id"
           />
           <movie-grid-item-v1
-            v-for="movie in movieList.data.results.slice(3, 6)"
+            v-for="movie in movieList.data.results.slice(3, pageCount)"
             :key="movie.id"
             :movieData="movie"
             :id="movie.id"
           />
         </section>
-        <pagination-bar />
+        <pagination-bar v-model="pageCount" />
       </div>
       <favorite-movies-sidebar />
     </div>
