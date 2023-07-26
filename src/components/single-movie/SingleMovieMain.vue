@@ -51,6 +51,24 @@ const { data: credits, dofetch: getCredits } = useAxios(
   `${props.type === 'tv-series' ? TV_SERIES_CREDITS_URL(props.id) : MOVIE_CREDITS_URL(props.id)}`
 )
 
+const directors = computed(() => {
+  return (
+    credits.value &&
+    credits.value.data &&
+    credits.value.data.cast &&
+    credits.value.data.cast.filter((crew) => crew.known_for_department === 'Directing')
+  )
+})
+
+const writers = computed(() => {
+  return (
+    credits.value &&
+    credits.value.data &&
+    credits.value.data.cast &&
+    credits.value.data.cast.filter((crew) => crew.known_for_department === 'writing')
+  )
+})
+
 const year = computed(() => {
   return (
     props.movieData.data.release_date && new Date(props.movieData.data.release_date).getFullYear()
@@ -316,15 +334,23 @@ watch(
             <div>
               Director:
               <div>
-                <span class="text-blue hover hover:cursor-pointer font-light">Joss Whedon</span>
+                <span
+                  v-for="director in directors"
+                  :key="director.id"
+                  class="text-blue hover hover:cursor-pointer font-light after:content-[','] last-of-type:after:content-['']"
+                  >{{ director.name }}</span
+                >
               </div>
             </div>
             <div class="text-black dark:text-text">
               Writer:
               <div>
-                <span class="text-blue hover hover:cursor-pointer font-light">Joss Whedon</span>
-                <span>,</span>
-                <span class="text-blue hover hover:cursor-pointer font-light">Stan Lee</span>
+                <span
+                  v-for="writer in writers"
+                  :key="writer.id"
+                  class="text-blue hover hover:cursor-pointer font-light after:content-[','] last-of-type:after:content-['']"
+                  >{{ writer.name }}</span
+                >
               </div>
             </div>
             <div class="text-black dark:text-text" v-if="!!credits">
