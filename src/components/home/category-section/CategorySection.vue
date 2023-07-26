@@ -14,9 +14,10 @@ defineProps(['list', 'title', 'type'])
       ></a>
     </header>
     <section class="tabs-link">
-      <tab-list :type="type" />
+      <tab-list :type="type" :class="{ 'pointer-events-none': title === 'ON TV' }"/>
       <div class="movie-list flex flex-wrap gap-4 max-[450px]:justify-center">
         <category-card
+          :class="{ 'pointer-events-none': title === 'ON TV' }"
           v-for="item in list"
           :key="item.id"
           :movieData="item"
