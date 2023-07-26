@@ -4,7 +4,7 @@ import {
   VALIDATE_WITH_LOGIN_URL,
   ACCOUNT_URL
 } from '@/constants/endpoints'
-import { Axios } from '@/utils/axios.js'
+import { Axios } from '@/utils/Axios.js'
 import { LOGIN, USER } from '@/constants/provide-keys.js'
 import { computed, reactive } from 'vue'
 const USER_ID = 'user_id'

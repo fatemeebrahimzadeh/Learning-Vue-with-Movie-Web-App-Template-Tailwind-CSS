@@ -1,5 +1,5 @@
 import { ref, onMounted } from 'vue'
-import { Axios } from '@/utils/axios.js'
+import { Axios } from '@/utils/Axios.js'
 import { LOADING_VISIBILITY } from '@/constants/provide-keys.js'
 import { inject } from 'vue'
 

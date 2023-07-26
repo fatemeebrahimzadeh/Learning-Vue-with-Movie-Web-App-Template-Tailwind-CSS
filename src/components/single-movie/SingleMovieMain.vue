@@ -4,7 +4,7 @@ import SingleMovieSideBar from '@/components/single-movie/SingleMovieSideBar.vue
 import RelatedMovieItem from '@/components/single-movie/RelatedMovieItem.vue'
 import SingleMovieItem from '@/components/single-movie/SingleMovieItem.vue'
 import CastItem from '@/components/single-movie/CastItem.vue'
-import { Axios } from '@/utils/axios.js'
+import { Axios } from '@/utils/Axios.js'
 import useAxios from '@/composable/useAxios.js'
 import { USER } from '@/constants/provide-keys.js'
 import { inject, computed, watch } from 'vue'
